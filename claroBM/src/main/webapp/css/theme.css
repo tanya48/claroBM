@@ -1,0 +1,12 @@
+body {
+    background: #e5e5e5;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #666;
+}
+
+.au-img {
+    height: 9%;
+    width: 30%;
+}
