@@ -32,14 +32,14 @@
                 <img class="au-img" src="images/clarologo.png">
             </div>
             <div class="card-body">
-                <form action="administration.jsp">
+                <form action="j_security_check" method="POST">
                     <div class="form-group">
                         <label>Username</label><br>
-                        <input type="text" class="form-control py-4 inputstyle" >
+                        <input type="text" class="form-control py-4 inputstyle" name="j_username" >
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control py-4 inputstyle" >
+                        <input type="password" class="form-control py-4 inputstyle" name="j_password" >
                     </div>
                     <div class="form-group" >
                         <button type="submit" class="btn btn-danger btn-block inputstyle">SIGN IN</button>
