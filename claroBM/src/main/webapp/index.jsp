@@ -25,6 +25,7 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 </head>
 <body>
+    <h1>entraste este va a ser para la captura de datos</h1>
 <div class="row">
     <div class="col-lg-5 m-auto">
         <div class="card mt-5">
