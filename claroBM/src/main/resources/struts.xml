@@ -8,8 +8,8 @@
     <constant name="struts.configuration.xml.reload" value="true" />
   
     <package name="default" extends="struts-default">
-        <action name="j_security_check">
-            <result name="success">/index.jsp</result>
-        </action>
+        <action name="logout">
+            <result name="success">/logout.jsp</result>
+        </action>        
     </package>
 </struts>
