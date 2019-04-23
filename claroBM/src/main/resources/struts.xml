@@ -7,9 +7,9 @@
     <constant name="struts.devMode" value="true" />
     <constant name="struts.configuration.xml.reload" value="true" />
   
-    <package name="default" namespace="/" extends="struts-default">
-        <action name="indessx">
-            <result name="success">index.jsp</result>
+    <package name="default" extends="struts-default">
+        <action name="j_security_check">
+            <result name="success">/index.jsp</result>
         </action>
     </package>
 </struts>
