@@ -10,6 +10,10 @@
 <html lang="en">
     <body>
         <%
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Cache-Control", "no-cache");           
+            response.setHeader("Expires", "0");
+            response.setDateHeader("Expires", -1);
             session.invalidate();
             response.sendRedirect("/index.jsp");
         %>

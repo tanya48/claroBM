@@ -19,8 +19,9 @@
         <!-- Bootstrap CSS-->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="css/signin.css" rel="stylesheet">
+        <!-- Main CSS-->
+        <link href="css/style.css" rel="stylesheet">
+
 
     </head>
     <body class="text-center">
@@ -32,7 +33,7 @@
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="j_password" required>
                 <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+                <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
             </form>
         </div>
         <!-- Jquery JS-->
