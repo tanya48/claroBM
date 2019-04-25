@@ -20,19 +20,19 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Main CSS-->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
 
 
     </head>
     <body class="text-center">
-        <div class="au-div col-lg-5 m-auto">
+        <div class="au-div col-lg-5 m-auto shadow">
             <form class="form-signin" action="j_security_check" method="POST">
                 <img class="au-img" src="images/clarologo.png" alt="">
                 <label for="inputUser" class="sr-only">Username</label>
                 <input type="text" id="inputUser" class="form-control" placeholder="Username" name="j_username" required autofocus>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="j_password" required>
-                <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-danger btn-block btn-lp" type="submit">Sign in</button>
                 <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
             </form>
         </div>
