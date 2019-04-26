@@ -48,7 +48,7 @@
                                 <a class="dat dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Centrals</b></a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                                     <a class="dropdown-item" href="#">Centrals</a>
-                                    <a class="dropdown-item" href="#">Active Directory users</a>
+                                    <a class="dropdown-item" href="#ADtable">Active Directory users</a>
                                 </div>
                             </div>
                         </div>
@@ -74,6 +74,7 @@
                             <th>Central ports</th>
                             <th>Proxy IP</th>
                             <th>Proxy port</th>
+                            <th>Username</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -91,6 +92,7 @@
                             <td>2007/2008/2009/201</td>
                             <td>0.0.0.0</td>
                             <td>1234</td>
+                            <td>MAUBM95T6YS</td>
                             <td>
                                 <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
                                 <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
@@ -109,6 +111,7 @@
                             <td>2007/2008/2009/201</td>
                             <td>0.0.0.0</td>
                             <td>1234</td>
+                            <td>MAUBM95T6YS</td>
                             <td>
                                 <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
                                 <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
@@ -127,6 +130,7 @@
                             <td>2007/2008/2009/201</td>
                             <td>0.0.0.0</td>
                             <td>1234</td>
+                            <td>MAUBM95T6YS</td>
                             <td>
                                 <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
                                 <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
@@ -145,6 +149,7 @@
                             <td>2007/2008/2009/201</td>
                             <td>0.0.0.0</td>
                             <td>1234</td>
+                            <td>MAUBM95T6YS</td>
                             <td>
                                 <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
                                 <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
@@ -219,11 +224,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="password" class="form-control" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Confirm password</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="password" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -296,11 +301,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="password" class="form-control" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Confirm password</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="password" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -468,7 +473,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Edit AD User Modal -->
         <div id="editADUser" class="modal fade">
             <div class="modal-dialog">
@@ -478,11 +482,22 @@
                             <h4 class="modal-title">Edit Active Directory User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" required>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Central</label>
+                                    <select id="inputStateCntral" class="form-control" required>
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>  
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -492,7 +507,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Delete AD User Modal -->
         <div id="deleteADUser" class="modal fade">
             <div class="modal-dialog">
@@ -514,13 +528,62 @@
                 </div>
             </div>
         </div>
+        
+        <table class="table table-striped table-hover" id="ADtable">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="selectAll">
+                                    <label for="selectAll"></label>
+                                </span>
+                            </th>
+                            <th>Username</th>
+                            <th>Central</th>                            
+                            <th>Central Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                    <label for="checkbox1"></label>
+                                </span>
+                            </td>
+                            <td>MAINRD5E041</td>
+                            <td>5ess</td>
+                            <td>MAUBN96eh</td>
+                            <td>
+                                <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                    <label for="checkbox1"></label>
+                                </span>
+                            </td>
+                            <td>MAINRD5E041</td>
+                            <td>5ess</td>
+                            <td>MAUBN96eh</td>
+                            <td>
+                                <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+        
+        
         <!-- Jquery JS-->
         <script src="js/jquery-3.4.0.min.js"></script>
         <script src="js/popper.min.js"></script>
-
         <!-- Bootstrap JS-->
         <script src="js/bootstrap.js"></script>
-
         <!-- Main JS-->
         <script type="text/javascript">
             function noBack()
