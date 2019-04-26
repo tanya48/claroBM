@@ -42,8 +42,7 @@
         <!-- Bootstrap JS-->
         <script src="js/bootstrap.js"></script>
 
-        <!-- Main JS-->
-        <script src="js/main.js"></script>
+
     </body>
 </html>
 <!-- End document -->

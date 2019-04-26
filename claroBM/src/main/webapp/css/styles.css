@@ -21,7 +21,7 @@ body {
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #fff2f2;
+    background-color: #ee2323;
 
 }
 
@@ -65,18 +65,6 @@ body {
 
 .container-fluid {
     margin-top: 50px;
-}
-
-.button {
-    display: block;
-    width: 115px;
-    height: 36px;
-    background: #ad1818;
-    padding-top: 5px;
-    text-align: center;
-    border-radius: 5px;
-    border-color: black;
-    color: white;
 }
 
 .form-signin {
@@ -131,7 +119,6 @@ body {
     height: 58px;
 }
 
-
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -160,10 +147,26 @@ body {
     margin: -20px -25px 10px;
     border-radius: 3px 3px 0 0;
 }
-.table-title h2 {
-    margin: 5px 0 0;
-    font-size: 1.25rem;
+
+
+.table-title .dat{
+     font-size: 1.5rem;
+     color: #ee2323;
 }
+
+.table-title .dropdown-menu a {
+    font-size: 1rem;
+    color: #2196F3;
+    
+}
+
+.table-title .dropdown-menu a:active {
+    font-size: 1rem;
+    color: #2196F3;
+    background-color: #e9e9e9;
+    
+}
+
 .table-title .btn-group {
     float: right;
 }
@@ -190,7 +193,7 @@ table.table tr th, table.table tr td {
     border-color: #e9e9e9;
     padding: 8px 15px;
     vertical-align: middle;
-     font-size: .8rem;
+    font-size: .8rem;
 }
 table.table tr th:first-child {
     width: 50px;
@@ -321,9 +324,10 @@ table.table td i {
     box-shadow: none;
     background: #ddd;
 }
+
 /* Modal styles */
 .modal .modal-dialog {
-    max-width: 400px;
+    max-width: 480px;
 }
 .modal .modal-header, .modal .modal-body, .modal .modal-footer {
     padding: 10px 20px;
@@ -342,11 +346,8 @@ table.table td i {
 }
 .modal .form-control {
     border-radius: 2px;
-    box-shadow: none;
     border-color: #dddddd;
-}
-.modal textarea.form-control {
-    resize: vertical;
+    font-size: 0.8rem;
 }
 .modal .btn {
     border-radius: 2px;
@@ -356,4 +357,6 @@ table.table td i {
 .modal form label {
     font-weight: normal;
 }
-
+.modal .form-row {
+    margin-top: -5px;
+}

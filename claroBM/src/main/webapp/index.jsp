@@ -25,6 +25,7 @@
 
     </head>
     <body class="index-bd">
+        <!--Navbar-->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <a class="navbar-brand" ><img class="au-img-ad" src="images/claroblanco.png" alt="">MANAGEMENT</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,28 +34,28 @@
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <!--li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USERS</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">USERS</a>
-                            <a class="dropdown-item" href="#">CENTRALS</a>
-                            <a class="dropdown-item" href="#">PROFILES</a>
-                        </div>
-                    </li-->
                 </ul>
                 <a href="<s:url action='logout'/>" class="btn btn-default"><i class="fas fa-sign-out-alt"></i> <span>Sign out</span></a>
             </div>
         </nav>
+        <!--Data table--> 
         <div class="container-fluid">
             <div class="table-wrapper shadow">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Centrals</h2>
+                            <div class="dropdown">
+                                <a class="dat dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Centrals</b></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" href="#">Centrals</a>
+                                    <a class="dropdown-item" href="#">Active Directory users</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central</span></a>                            
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                            <a href="#addCentral" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central</span></a>                            
+                            <a href="#deleteCentral" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                            <a href="#addADUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>button</span></a>						
                         </div>
                     </div>
                 </div>
@@ -91,26 +92,8 @@
                             <td>0.0.0.0</td>
                             <td>1234</td>
                             <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-<tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>MAINRD5E041</td>
-                            <td>5ess</td>
-                            <td>172.27.72.77</td>
-                            <td>2007/2008/2009/201</td>
-                            <td>0.0.0.0</td>
-                            <td>1234</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -127,8 +110,8 @@
                             <td>0.0.0.0</td>
                             <td>1234</td>
                             <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -145,8 +128,26 @@
                             <td>0.0.0.0</td>
                             <td>1234</td>
                             <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                    <label for="checkbox1"></label>
+                                </span>
+                            </td>
+                            <td>MAINRD5E041</td>
+                            <td>5ess</td>
+                            <td>172.27.72.77</td>
+                            <td>2007/2008/2009/201</td>
+                            <td>0.0.0.0</td>
+                            <td>1234</td>
+                            <td>
+                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -165,8 +166,8 @@
                 </div>
             </div>
         </div>
-        <!-- Add Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
+        <!-- Add Central Modal -->
+        <div id="addCentral" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -174,30 +175,64 @@
                             <h4 class="modal-title">Add Central</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>CLLI</label>
-                                <input type="text" class="form-control" required>
+                        <div class="modal-body ">
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label>CLLI</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Central type</label>
+                                    <select id="inputState" class="form-control" required>
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Central type</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label>Central IP</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Central ports</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Central IP</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label>Proxy IP</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Proxy port</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Central ports</label>
-                                <input type="text" class="form-control" required>
+                            <hr>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 form-user">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Proxy IP</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Password</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Confirm password</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Proxy port</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="text-warning">- Minimum length: 8 characters</label>
+                                    <label class="text-warning">- At least one special character</label>
+                                    <label class="text-warning">- At least one number and one letter</label>
+                                    <label class="text-warning">- Must contain a capital letter</label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -208,8 +243,8 @@
                 </div>
             </div>
         </div>
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
+        <!-- Edit Central Modal -->
+        <div id="editCentral" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -217,30 +252,64 @@
                             <h4 class="modal-title">Edit Central</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>CLLI</label>
-                                <input type="text" class="form-control" required>
+                        <div class="modal-body ">
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label>CLLI</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Central type</label>
+                                    <select id="inputState" class="form-control" required>
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Central type</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label>Central IP</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Central ports</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Central IP</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label>Proxy IP</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Proxy port</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Central ports</label>
-                                <input type="text" class="form-control" required>
+                            <hr>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 form-user">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Proxy IP</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Password</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Confirm password</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Proxy port</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="text-warning">- Minimum length: 8 characters</label>
+                                    <label class="text-warning">- At least one special character</label>
+                                    <label class="text-warning">- At least one number and one letter</label>
+                                    <label class="text-warning">- Must contain a capital letter</label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -251,9 +320,8 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
+        <!-- Delete Central Modal -->
+        <div id="deleteCentral" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -273,9 +341,182 @@
                 </div>
             </div>
         </div>
+        <!-- Add Central User Modal NOT BEING USED -->
+        <div id="addCentralUser" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Add Central User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">					
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm password</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-warning">- Minimum length: 8 characters</label>
+                                <label class="text-warning">- At least one special character</label>
+                                <label class="text-warning">- At least one number and one letter</label>
+                                <label class="text-warning">- Must contain a capital letter</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Central User Modal NOT BEING USED -->
+        <div id="editCentralUser" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Edit Central User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">					
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Old Password</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>New password</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm password</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-info" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Central User Modal NOT BEING USED -->
+        <div id="deleteCentralUser" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Delete Central User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">					
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Add AD User Modal -->
+        <div id="addADUser" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Add Active Directory User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Central</label>
+                                    <select id="inputStateCntral" class="form-control" required>
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
+        <!-- Edit AD User Modal -->
+        <div id="editADUser" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Edit Active Directory User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">					
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-info" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete AD User Modal -->
+        <div id="deleteADUser" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Delete Active Directory User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">					
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Jquery JS-->
         <script src="js/jquery-3.4.0.min.js"></script>
+        <script src="js/popper.min.js"></script>
 
         <!-- Bootstrap JS-->
         <script src="js/bootstrap.js"></script>
@@ -284,16 +525,16 @@
         <script type="text/javascript">
             function noBack()
             {
-                window.history.forward()
+                window.history.forward();
             }
             noBack();
             window.onload = noBack;
             window.onpageshow = function (evt) {
                 if (evt.persisted)
-                    noBack()
+                    noBack();
             }
             window.onunload = function () {
-                void (0)
+                void (0);
             }
         </script>
         <script type="text/javascript">
