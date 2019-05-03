@@ -131,7 +131,6 @@ body {
         height: 22px;
     }
 }
-
 .table-wrapper {
     background: #fff;
     padding: 20px 25px;
@@ -139,43 +138,77 @@ body {
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
-.table-title {        
-    padding-bottom: 15px;
+/*.table-title-ad {        
     background: #fff;
     color: #ee2323;
     padding: 16px 30px;
-    margin: -20px -25px 10px;
+    margin: -20px -25px -11px;    
     border-radius: 3px 3px 0 0;
 }
-
-
-.table-title .dat{
+.table-title-ad .dat-ad {
+    margin-left: 20px;
+}
+.table-title-ad .btn-ad {  
+    margin-left: -30px;
+}
+.table-title-ad .dat{
      font-size: 1.5rem;
      color: #ee2323;
 }
 
-.table-title .dropdown-menu a {
-    font-size: 1rem;
-    color: #2196F3;
-    
-}
-
-.table-title .dropdown-menu a:active {
-    font-size: 1rem;
-    color: #2196F3;
-    background-color: #e9e9e9;
-    
-}
-
-.table-title .btn-group {
+.table-title-ad .btn {
+    color: #fff;
     float: right;
+    font-size: .8rem;
+    border: none;
+    min-width: 40px;
+    change to width to 50 for letter
+    border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 5px;
 }
+para botones sin letra
+.table-title-ad .btn i {
+    font-size: 1.25rem;
+}*/
+/*para botones con letra*/
+/*.table-title-ad .btn i {
+    float: left;
+    font-size: 1.25rem;
+    margin-right: 5px;
+}*/
+/*.table-title-ad .btn span {
+    float: left;
+}*/
+
+
+
+.table-title {        
+    background: #fff;
+    color: #ee2323;
+    padding: 16px 30px;
+    margin: -20px -25px -11px;    
+    border-radius: 3px 3px 0 0;
+}
+.table-title .dat-cu {
+     font-size: 1.3rem;
+     color: #ee2323;
+}
+.table-title .dat {
+     font-size: 1.4rem;
+     color: #ee2323;
+}
+
+
+
 .table-title .btn {
     color: #fff;
     float: right;
     font-size: .8rem;
     border: none;
     min-width: 50px;
+    //min-width: 40px;
     border-radius: 2px;
     border: none;
     outline: none !important;
@@ -184,14 +217,14 @@ body {
 .table-title .btn i {
     float: left;
     font-size: 1.25rem;
-    margin-right: 5px;
+    margin-right: 10px;
+    //margin-right: 5px;
 }
 .table-title .btn span {
     float: left;
 }
 table.table tr th, table.table tr td {
     border-color: #e9e9e9;
-    padding: 8px 15px;
     vertical-align: middle;
     font-size: .8rem;
 }
@@ -353,6 +386,14 @@ table.table td i {
     border-radius: 2px;
     min-width: 100px;
     font-size: .9rem;
+}	
+.modal .btn .btn-ports {
+    border-radius: 2px;
+    width: 50px;
+    font-size: .9rem;
+}	
+.modal  .btn i {
+    font-size: 1.5rem;
 }	
 .modal form label {
     font-weight: normal;

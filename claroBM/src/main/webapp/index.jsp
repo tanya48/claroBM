@@ -40,142 +40,198 @@
         </nav>
         <!--Data table--> 
         <div class="container-fluid">
-            <div class="table-wrapper shadow">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="dropdown">
-                                <a class="dat dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Centrals</b></a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="#">Centrals</a>
-                                    <a class="dropdown-item" href="#ADtable">Active Directory users</a>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="table-wrapper shadow">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label class="dat" >Centrals</label>                                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <a href="#deleteCentral" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                    <a href="#addCentral" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central</span></a>                            
+
+                                    <!--                                    <a href="#addCentral" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i></a>                            
+                                                                        <a href="#deleteCentral" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i></a>						-->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <a href="#addCentral" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central</span></a>                            
-                            <a href="#deleteCentral" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
-                            <a href="#addADUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>button</span></a>						
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
+                                        </span>
+                                    </th>
+                                    <th>CLLI</th>
+                                    <th>Central type</th>                            
+                                    <th>Central IP</th>
+                                    <th>Central ports</th>
+                                    <th>Proxy IP</th>
+                                    <th>Proxy port</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                                    </td>
+                                    <td>MAINRD5E041</td>
+                                    <td>5ess</td>
+                                    <td>172.27.72.77</td>
+                                    <td>2007/2008/2009/201</td>
+                                    <td>0.0.0.0</td>
+                                    <td>1234</td>
+                                    <td>
+                                        <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                        <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="clearfix">
+                            <div class="hint-text"><b>5</b> out of <b>25</b> entries</div>
+                            <ul class="pagination">
+                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
-                                    <label for="selectAll"></label>
-                                </span>
-                            </th>
-                            <th>CLLI</th>
-                            <th>Central type</th>                            
-                            <th>Central IP</th>
-                            <th>Central ports</th>
-                            <th>Proxy IP</th>
-                            <th>Proxy port</th>
-                            <th>Username</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>MAINRD5E041</td>
-                            <td>5ess</td>
-                            <td>172.27.72.77</td>
-                            <td>2007/2008/2009/201</td>
-                            <td>0.0.0.0</td>
-                            <td>1234</td>
-                            <td>MAUBM95T6YS</td>
-                            <td>
-                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>MAINRD5E041</td>
-                            <td>5ess</td>
-                            <td>172.27.72.77</td>
-                            <td>2007/2008/2009/201</td>
-                            <td>0.0.0.0</td>
-                            <td>1234</td>
-                            <td>MAUBM95T6YS</td>
-                            <td>
-                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>MAINRD5E041</td>
-                            <td>5ess</td>
-                            <td>172.27.72.77</td>
-                            <td>2007/2008/2009/201</td>
-                            <td>0.0.0.0</td>
-                            <td>1234</td>
-                            <td>MAUBM95T6YS</td>
-                            <td>
-                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>MAINRD5E041</td>
-                            <td>5ess</td>
-                            <td>172.27.72.77</td>
-                            <td>2007/2008/2009/201</td>
-                            <td>0.0.0.0</td>
-                            <td>1234</td>
-                            <td>MAUBM95T6YS</td>
-                            <td>
-                                <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                    </ul>
+                <div class="col-lg-5">
+                    <div class="table-wrapper shadow">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label class="dat-cu">Central Users</label>                                        
+                                </div>
+                                <div class="col-lg-8 btn-ad">
+                                    <!--                                    <a href="#addCentralUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i></a>                            
+                                                                        <a href="#deleteCentralUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i></a>						-->
+                                    <a href="#deleteCentralUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                    <a href="#addCentralUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central User</span></a>                            
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover" id="ADtable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
+                                        </span>
+                                    </th>
+                                    <th>Username</th>
+                                    <th>Central</th>                            
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>        
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                                    </td>
+                                    <td>MADMKSDMA</td>
+                                    <td>5eess1</td>
+                                    <td>
+                                        <a href="#editCentralUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                        <a href="#deleteCentralUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>  
+                            </tbody>
+                        </table>
+                        <div class="clearfix">
+                            <div class="hint-text"><b>5</b> out of <b>25</b> entries</div>
+                            <ul class="pagination">
+                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="table-wrapper shadow">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-lg-5 dat-ad">
+                                    <label class="dat" >AD Users</label>                                        
+                                </div>
+                                <div class="col-lg-7 btn-ad">
+                                    <a href="#deleteADUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                    <a href="#addADUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add AD User</span></a>                            
+
+                                    <!--                                    <a href="#addADUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i></a>                            
+                                                                        <a href="#deleteADUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i></a>						-->
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover" id="ADtable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
+                                        </span>
+                                    </th>
+                                    <th>Username</th>
+                                    <th>Central</th>                            
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                                    </td>
+                                    <td>MADMKSDMA</td>
+                                    <td>5eess1</td>
+                                    <td>
+                                        <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                        <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>                          
+                            </tbody>
+                        </table>
+                        <div class="clearfix">
+                            <div class="hint-text"><b>5</b> out of <b>25</b> entries</div>
+                            <ul class="pagination">
+                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
         <!-- Add Central Modal -->
         <div id="addCentral" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form>
+                    <form action="addCentral" method="POST">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add Central</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -184,7 +240,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-7">
                                     <label>CLLI</label>
-                                    <input type="text" class="form-control" required>
+                                    <input name="clli" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label>Central type</label>
@@ -193,51 +249,108 @@
                                         <option>...</option>
                                     </select>
                                 </div>
+                            </div>                            
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label>Proxy IP</label>
+                                    <input name="pip" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Proxy port</label>
+                                    <input name="pport" type="text" class="form-control" required>
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-7">
                                     <label>Central IP</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group col-md-5">
+                                    <input name="cip" type="text" class="form-control" required>
+                                </div>                                
+                                <div class="form-group col-md-3">
                                     <label>Central ports</label>
-                                    <input type="text" class="form-control" required>
+                                    <input class="form-control" type="text" placeholder="# of ports" id="member" name="member" value="">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label style="color: #fff; ">__</label>
+                                    <a href="#" onclick="addFields()" class="btn btn-link"><i class="fas fa-plus-circle" ></i></a>                          
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-7">
-                                    <label>Proxy IP</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group col-md-5">
-                                    <label>Proxy port</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
+                            <div class="form-row justify-content-md-end">
+                                <div class="align-content-md-end form-group col-md-5" id="container"></div>  
                             </div>
-                            <hr>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Add Central Ports Modal-->
+        <div id="addCentralPorts" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Add Central Ports</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body ">
                             <div class="form-row">
-                                <div class="form-group col-md-12 form-user">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>1</label>
+                                    <input name="port1" type="text" class="form-control" required>
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>2</label>
+                                    <input name="port2" type="text" class="form-control">
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>3</label>
+                                    <input name="port3" type="text" class="form-control">
+                                </div>                                
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Confirm password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>4</label>
+                                    <input name="port4" type="text" class="form-control">
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>5</label>
+                                    <input name="port5" type="text" class="form-control">
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>6</label>
+                                    <input name="port6" type="text" class="form-control">
+                                </div> 
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label class="text-warning">- Minimum length: 8 characters</label>
-                                    <label class="text-warning">- At least one special character</label>
-                                    <label class="text-warning">- At least one number and one letter</label>
-                                    <label class="text-warning">- Must contain a capital letter</label>
-                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>7</label>
+                                    <input name="port7" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>8</label>
+                                    <input name="port8" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>9</label>
+                                    <input name="port9" type="text" class="form-control" >
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>10</label>
+                                    <input name="port10" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>11</label>
+                                    <input name="port11" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>12</label>
+                                    <input name="port12" type="text" class="form-control" >
+                                </div> 
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -278,7 +391,7 @@
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label>Central ports</label>
-                                    <input type="text" class="form-control" required>
+                                    <a href="#editCentralPorts" class="btn btn-warning" data-toggle="modal"><i class="fas fa-pencil-alt" ></i> <span>Edit Central Ports</span></a>                            
                                 </div>
                             </div>
                             <div class="form-row">
@@ -291,35 +404,85 @@
                                     <input type="text" class="form-control" required>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="form-row">
-                                <div class="form-group col-md-12 form-user">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Confirm password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label class="text-warning">- Minimum length: 8 characters</label>
-                                    <label class="text-warning">- At least one special character</label>
-                                    <label class="text-warning">- At least one number and one letter</label>
-                                    <label class="text-warning">- Must contain a capital letter</label>
-                                </div>
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                             <input type="submit" class="btn btn-info" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Edit Central Ports Modal-->
+        <div id="editCentralPorts" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Edit Central Ports</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body ">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>1</label>
+                                    <input name="port1" type="text" class="form-control" required>
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>2</label>
+                                    <input name="port2" type="text" class="form-control">
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>3</label>
+                                    <input name="port3" type="text" class="form-control">
+                                </div>                                
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>4</label>
+                                    <input name="port4" type="text" class="form-control">
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>5</label>
+                                    <input name="port5" type="text" class="form-control">
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>6</label>
+                                    <input name="port6" type="text" class="form-control">
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>7</label>
+                                    <input name="port7" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>8</label>
+                                    <input name="port8" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>9</label>
+                                    <input name="port9" type="text" class="form-control" >
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>10</label>
+                                    <input name="port10" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>11</label>
+                                    <input name="port11" type="text" class="form-control" >
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>12</label>
+                                    <input name="port12" type="text" class="form-control" >
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
                         </div>
                     </form>
                 </div>
@@ -334,9 +497,13 @@
                             <h4 class="modal-title">Delete Central</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <p>Are you sure you want to delete these Records?</p>
+                                    <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -346,7 +513,7 @@
                 </div>
             </div>
         </div>
-        <!-- Add Central User Modal NOT BEING USED -->
+        <!-- Add Central User Modal-->
         <div id="addCentralUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -355,25 +522,48 @@
                             <h4 class="modal-title">Add Central User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" required>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Central</label>
+                                    <select id="inputStateCntral" class="form-control" required>
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Confirm password</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Confirm password</label>
+                                    <input type="password" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="text-warning">- Minimum length: 8 characters</label>
-                                <label class="text-warning">- At least one special character</label>
-                                <label class="text-warning">- At least one number and one letter</label>
-                                <label class="text-warning">- Must contain a capital letter</label>
-                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- Minimum length: 8 characters</label>                                    
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- At least one special character</label>
+                                </div>
+                            </div>                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- At least one number and one letter</label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- Must contain a capital letter</label>
+                                </div>
+                            </div>                            
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -383,7 +573,7 @@
                 </div>
             </div>
         </div>
-        <!-- Edit Central User Modal NOT BEING USED -->
+        <!-- Edit Central User Modal-->
         <div id="editCentralUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -392,23 +582,54 @@
                             <h4 class="modal-title">Edit Central User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" required>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Old Password</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Central</label>
+                                    <select id="inputStateCntral" class="form-control" required>
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>New password</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <label>Old password</label>
+                                    <input type="password" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Confirm password</label>
-                                <input type="text" class="form-control" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>New password</label>
+                                    <input type="password" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Confirm password</label>
+                                    <input type="password" class="form-control" required>
+                                </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- Minimum length: 8 characters</label>                                    
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- At least one special character</label>
+                                </div>
+                            </div>                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- At least one number and one letter</label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="text-warning">- Must contain a capital letter</label>
+                                </div>
+                            </div>                            
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -418,7 +639,7 @@
                 </div>
             </div>
         </div>
-        <!-- Delete Central User Modal NOT BEING USED -->
+        <!-- Delete Central User Modal-->
         <div id="deleteCentralUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -428,8 +649,12 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                            <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <p>Are you sure you want to delete these Records?</p>
+                                    <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -517,8 +742,12 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                            <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <p>Are you sure you want to delete these Records?</p>
+                                    <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -528,57 +757,8 @@
                 </div>
             </div>
         </div>
-        
-        <table class="table table-striped table-hover" id="ADtable">
-                    <thead>
-                        <tr>
-                            <th>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
-                                    <label for="selectAll"></label>
-                                </span>
-                            </th>
-                            <th>Username</th>
-                            <th>Central</th>                            
-                            <th>Central Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>MAINRD5E041</td>
-                            <td>5ess</td>
-                            <td>MAUBN96eh</td>
-                            <td>
-                                <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>MAINRD5E041</td>
-                            <td>5ess</td>
-                            <td>MAUBN96eh</td>
-                            <td>
-                                <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-        
-        
-        
+
+        <!--        -->  
         <!-- Jquery JS-->
         <script src="js/jquery-3.4.0.min.js"></script>
         <script src="js/popper.min.js"></script>
@@ -599,6 +779,28 @@
             window.onunload = function () {
                 void (0);
             }
+            function addFields(){
+            // Number of inputs to create
+            var number = document.getElementById("member").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("Port " + (i+1)));
+                // Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.setAttribute('class', 'form-control');
+                input.name = "port" + i;
+                container.appendChild(input);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
