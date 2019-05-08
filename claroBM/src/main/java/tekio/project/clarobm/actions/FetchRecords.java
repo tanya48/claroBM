@@ -68,7 +68,7 @@ public class FetchRecords extends ActionSupport {
                 i++;
             }
             
-            String centralUsers = "select uc.username, c.descripcion from usuariocentral uc join central c on uc.fk_idCentral = c.idCentral";
+           /* String centralUsers = "select uc.username, c.descripcion from usuariocentral uc join central c on uc.fk_idCentral = c.idCentral";
             ps = con.prepareStatement(centralUsers);
             rs = ps.executeQuery();
             int j = 0;
@@ -90,13 +90,48 @@ public class FetchRecords extends ActionSupport {
                 adu.setUadclli(rs.getString("descripcion"));
                 list3.add(adu);
                 k++;
-            }
+            }*/
             con.close();
             return "success";
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
         }   
+    }
+    
+    public String getUsers(){
+        try {
+            Connection con = Conexion.getConexion();
+            String centralUsers = "select uc.username, c.descripcion from usuariocentral uc join central c on uc.fk_idCentral = c.idCentral";
+            PreparedStatement ps = con.prepareStatement(centralUsers);
+            ResultSet rs = ps.executeQuery();
+            int j = 0;
+            while (rs.next() && j < 7) {
+                CentralUser cu = new CentralUser();
+                cu.setCuname(rs.getString("username"));
+                cu.setCuclli(rs.getString("descripcion"));
+                list2.add(cu);
+                j++;
+            }
+            
+            String adUsers = "select uad.username, c.descripcion from usuarioad uad join usuarioad_has_usuariocentral uu on (uu.fk_idUsuarioAD = uad.idUsuarioAD) join "
+                    + "usuariocentral uc on (uc.idusuariocentral = uu.fk_idusuariocentral) join central c on (c.idcentral = uc.fk_idcentral)";
+            ps = con.prepareStatement(adUsers);
+            rs = ps.executeQuery();
+            int k = 0;
+            while (rs.next() && k < 8) {
+                AdUser adu = new AdUser();
+                adu.setUadname(rs.getString("username"));
+                adu.setUadclli(rs.getString("descripcion"));
+                list3.add(adu);
+                k++;
+            }
+            con.close();
+            return "success";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }  
     }
 
 }

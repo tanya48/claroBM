@@ -17,8 +17,11 @@
         <action name="index" class="tekio.project.clarobm.actions.FetchRecords" method="execute" >
             <result name="success">/index.jsp</result>
         </action>        
-        <action name="users" class="tekio.project.clarobm.actions.FetchRecords" method="execute" >
+        <action name="users" class="tekio.project.clarobm.actions.FetchRecords" method="getUsers" >
             <result name="success">/users.jsp</result>
+        </action>        
+        <action name="deleteCentral" class="tekio.project.clarobm.actions.DeleteRecords" method="execute" >
+            <result name="success">/index.jsp</result>
         </action>        
     </package>
 </struts>
