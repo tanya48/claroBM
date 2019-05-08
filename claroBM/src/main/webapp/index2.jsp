@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : index2
     Created on : 8/05/2019, 12:18:19 PM
     Author     : Tanya Tapia 
 --%>
@@ -47,20 +47,20 @@
             <div class="album py-5 bg-light">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="table-wrapper shadow">
                                 <div class="table-title">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <i class=" central-i fas fa-warehouse"></i><label class="dat" >Centrals</label>                                        
+                                        <div class="col-lg-4">
+                                            <label class="dat-cu">Central Users</label>                                        
                                         </div>
-                                        <div class="col-lg-6">
-                                            <a href="#deleteCentral" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
-                                            <a href="#addCentral" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central</span></a>                            
+                                        <div class="col-lg-8 btn-ad">
+                                            <a href="#deleteCentralUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                            <a href="#addCentralUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central User</span></a>                            
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="ADtable">
                                     <thead>
                                         <tr>
                                             <th>
@@ -69,17 +69,13 @@
                                                     <label for="selectAll"></label>
                                                 </span>
                                             </th>
-                                            <th>CLLI</th>
-                                            <th>Central type</th>                            
-                                            <th>Central IP</th>
-                                            <th>Central ports</th>
-                                            <th>Proxy IP</th>
-                                            <th>Proxy port</th>
+                                            <th>Username</th>
+                                            <th>Central</th>                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <s:iterator  value="list">
+                                    <tbody> 
+                                        <s:iterator  value="list2">
                                             <tr>
                                                 <td>
                                                     <span class="custom-checkbox">
@@ -87,18 +83,14 @@
                                                         <label for="checkbox1"></label>
                                                     </span>
                                                 </td>
-                                                <td><s:property value="clli"/></td>
-                                                <td><s:property value="ctype"/></td>
-                                                <td><s:property value="cip"/></td>
-                                                <td><s:property value="cports"/></td>
-                                                <td><s:property value="pip"/></td>
-                                                <td><s:property value="pport"/></td>
+                                                <td><s:property value="cuname"/></td>
+                                                <td><s:property value="cuclli"/></td>
                                                 <td>
-                                                    <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                                    <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                                    <a href="#editCentralUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#deleteCentralUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>
-                                        </s:iterator>
+                                        </s:iterator>  
                                     </tbody>
                                 </table>
                                 <div class="clearfix">
@@ -113,6 +105,64 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+<div class="table-wrapper shadow">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-lg-5 dat-ad">
+                                        <label class="dat" >Active Directory Users</label>                                        
+                                    </div>
+                                    <div class="col-lg-7 btn-ad">
+                                        <a href="#deleteADUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                        <a href="#addADUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add AD User</span></a>                            
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-hover" id="ADtable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <span class="custom-checkbox">
+                                                <input type="checkbox" id="selectAll">
+                                                <label for="selectAll"></label>
+                                            </span>
+                                        </th>
+                                        <th>Username</th>
+                                        <th>Central</th>                            
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <s:iterator  value="list3">
+                                        <tr>
+                                            <td>
+                                                <span class="custom-checkbox">
+                                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                    <label for="checkbox1"></label>
+                                                </span>
+                                            </td>
+                                            <td><s:property value="uadname"/></td>
+                                            <td><s:property value="uadclli"/></td>
+                                            <td>
+                                                <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                                <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    </s:iterator>                        
+                                </tbody>
+                            </table>
+                            <div class="clearfix">
+                                <div class="hint-text"><b>5</b> out of <b>25</b> entries</div>
+                                <ul class="pagination">
+                                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                    <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,7 +170,11 @@
 
         <footer class="text-muted">
             <div class="container">
-                <p>Claro footer </p>
+                <p class="float-right">
+                    <a href="#">Back to top</a>
+                </p>
+                <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+                <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
             </div>
         </footer>
         <!-- Add Central Modal -->
