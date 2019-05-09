@@ -1,6 +1,6 @@
 <%-- 
-    Document   : users
-    Created on : 8/05/2019, 12:18:19 PM
+    Document   : adusers
+    Created on : 9/05/2019, 01:45:48 PM
     Author     : Tanya Tapia 
 --%>
 
@@ -37,7 +37,7 @@
                                     <a class="dropdown-item" href="<s:url action='usersc'/>">Central users</a>
                                     <a class="dropdown-item" href="<s:url action='usersad'/>">Active Directory users</a>
                                 </div>
-                            </li>                            
+                            </li>
                         </ul>
                         <form action="logout">
                             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign out</button>
@@ -50,19 +50,20 @@
         <main role="main">
             <div class="album py-5 bg-light">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="table-wrapper shadow">
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <i class="central-i fas fa-user-tag"></i>
-                                            <label class="dat">Central users </label>                                                                              
+                                            <i class="central-i fas fa-user-shield"></i>
+                                            <label class="dat" >Active Directory users</label>                                                                                                                    
                                         </div>
                                         <div class="col-lg-6 btn-ad">
-                                            <a href="#deleteCentralUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
-                                            <a href="#addCentralUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central User</span></a>                            
+                                            <a href="#deleteADUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                            <a href="#addADUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add AD User</span></a>                            
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <table class="table table-striped table-hover" id="ADtable">
@@ -75,13 +76,12 @@
                                                 </span>
                                             </th>
                                             <th>Username</th>
-                                            <th>Central CLLI</th>                            
-                                            <th>Central type</th>                                                      
+                                            <th>Central</th>                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody> 
-                                        <s:iterator  value="listCentralUsers">
+                                    <tbody>
+                                        <s:iterator  value="listADUsers">
                                             <tr>
                                                 <td>
                                                     <span class="custom-checkbox">
@@ -89,15 +89,14 @@
                                                         <label for="checkbox1"></label>
                                                     </span>
                                                 </td>
-                                                <td><s:property value="cuname"/></td>
-                                                <td><s:property value="cuclli"/></td>
-                                                <td><s:property value="cuctype"/></td>                                               
+                                                <td><s:property value="uadname"/></td>
+                                                <td><s:property value="uadclli"/></td>
                                                 <td>
-                                                    <a href="#editCentralUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                                    <a href="#deleteCentralUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                                    <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>
-                                        </s:iterator>  
+                                        </s:iterator>                        
                                     </tbody>
                                 </table>
                                 <div class="clearfix">
@@ -110,7 +109,7 @@
                                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -122,78 +121,18 @@
                 <p>Claro footer </p>
             </div>
         </footer>
-        
-        <!-- Add Central User Modal-->
-        <div id="addCentralUser" class="modal fade">
+        <!-- Add AD User Modal -->
+        <div id="addADUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add Central User</h4>
+                            <h4 class="modal-title">Add Active Directory User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <div class="form-row">
-                                <div class="form-group col-lg-12">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                            </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label>Central</label>
-                                    <s:select headerKey="-1" headerValue="--Select--"
-                                              list="listCentralwU" class="form-control"
-                                              listKey="cid" listValue="clli + ' ' + ctype"/>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Confirm password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- Minimum length: 8 characters</label>                                    
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- At least one special character</label>
-                                </div>
-                            </div>                            
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- At least one number and one letter</label>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- Must contain a capital letter</label>
-                                </div>
-                            </div>                            
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Central User Modal-->
-        <div id="editCentralUser" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Central User</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-row">
-                                <div class="form-group col-lg-12">
                                     <label>Username</label>
                                     <input type="text" class="form-control" required>
                                 </div>
@@ -206,39 +145,41 @@
                                         <option>...</option>
                                     </select>
                                 </div>
+                            </div>  
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Edit AD User Modal -->
+        <div id="editADUser" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Edit Active Directory User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-lg-12">
-                                    <label>Old password</label>
-                                    <input type="password" class="form-control" required>
+                                <div class="form-group col-md-12">
+                                    <label>Central</label>
+                                    <select id="inputStateCntral" class="form-control" required>
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>New password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Confirm password</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- Minimum length: 8 characters</label>                                    
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- At least one special character</label>
-                                </div>
-                            </div>                            
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- At least one number and one letter</label>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- Must contain a capital letter</label>
-                                </div>
-                            </div>                            
+                            </div>  
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -248,13 +189,13 @@
                 </div>
             </div>
         </div>
-        <!-- Delete Central User Modal-->
-        <div id="deleteCentralUser" class="modal fade">
+        <!-- Delete AD User Modal -->
+        <div id="deleteADUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Central User</h4>
+                            <h4 class="modal-title">Delete Active Directory User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
@@ -272,7 +213,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>        
         <!--        -->  
         <!-- Jquery JS-->
         <script src="js/jquery-3.4.0.min.js"></script>

@@ -31,9 +31,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<s:url action='index'/>">Centrals <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<s:url action='users'/>">Users</a>
-                            </li>                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" href="<s:url action='usersc'/>">Central users</a>
+                                    <a class="dropdown-item" href="<s:url action='usersad'/>">Active Directory users</a>
+                                </div>
+                            </li>
                         </ul>
                         <form action="logout">
                             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign out</button>
@@ -79,7 +83,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <s:iterator  value="list">
+                                        <s:iterator  value="listCentrals">
                                             <tr>
                                                 <td>
                                                     <span class="custom-checkbox">
@@ -140,10 +144,9 @@
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label>Central type</label>
-                                    <select id="inputState" class="form-control" required>
-                                        <option>Choose...</option>
-                                        <option>...</option>
-                                    </select>
+                                    <s:select headerKey="-1" headerValue="--Select--"
+                                              list="listCentralType" class="form-control"
+                                              listKey="ctid" listValue="tecnologia + ' ' + descripcion "/>
                                 </div>
                             </div>                            
                             <div class="form-row">
@@ -199,7 +202,7 @@
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label>Central type</label>
-                                    <select id="inputState" class="form-control" required>
+                                    <select id="centralEdit" class="form-control" required>
                                         <option>Choose...</option>
                                         <option>...</option>
                                     </select>
@@ -326,6 +329,21 @@
                         $("#selectAll").prop("checked", false);
                     }
                 });
+                //                $.ajax({
+                //                    type: "GET",
+                //                    url: "getmydata",
+                //                    success: function (itr) {
+                //                        $("#centralAdd").html("");
+                //                        $("#centralAdd").append("<option value = '0'>Select central type </option>");
+                //                        $.each(itr.dataList2, function () {
+                //                            $("#centralAdd").append("<option>" + this + "</option>");
+                //                        });
+                //
+                //                    },
+                //                    error: function (itr) {
+                //                        alert("No values found..!!");
+                //                    }
+                //                });
             });
         </script>
 </html>

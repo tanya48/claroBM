@@ -156,6 +156,13 @@ Navbar
     height: 35px;
 }
 
+.navbar .dropdown .dropdown-menu a {
+    color: #000;
+}
+.navbar .dropdown .dropdown-item:hover {
+    background-color: #ffeaea;
+}
+
 /*Table*/
 .table-wrapper {
     background: #fff;

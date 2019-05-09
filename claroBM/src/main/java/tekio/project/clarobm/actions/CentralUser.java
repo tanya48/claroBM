@@ -13,6 +13,7 @@ public class CentralUser {
     private int cuid;       //central user id
     private String cuname;  //central user username
     private String cuclli;  // central user description
+    private String cuctype; //central user central type
     //Central central = new Central();
 
     public int getCuid() {
@@ -39,6 +40,17 @@ public class CentralUser {
         this.cuclli = cuclli;
     }
 
+    public String getCuctype() {
+        return cuctype;
+    }
+
+    public void setCuctype(String cuctype) {
+        this.cuctype = cuctype;
+    }
+    
+    
+    
+
     /*public Central getCentral() {
         return central;
     }
@@ -46,4 +58,5 @@ public class CentralUser {
     public void setCentral(Central central) {
         this.central = central;
     }  */  
+
 }

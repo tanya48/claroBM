@@ -18,36 +18,55 @@ import tekio.project.clarobm.utils.Conexion;
  */
 public class FetchRecords extends ActionSupport {
 
+    ArrayList<Central> listCentrals = new ArrayList<Central>();     //ArrayList for centrals
+    ArrayList<Central> listCentralwU = new ArrayList<Central>();     //ArrayList for centrals with central users
+    ArrayList<CentralUser> listCentralUsers= new ArrayList<CentralUser>();     //ArrayList for centrals users
+    ArrayList<AdUser> listADUsers = new ArrayList<AdUser>();     //ArrayList for AD users
+    ArrayList<CentralType> listCentralType = new ArrayList<CentralType>();     //ArrayList for AD users
+
+    public ArrayList<Central> getListCentrals() {
+        return listCentrals;
+    }
+
+    public void setListCentrals(ArrayList<Central> listCentrals) {
+        this.listCentrals = listCentrals;
+    }
+
+    public ArrayList<CentralUser> getListCentralUsers() {
+        return listCentralUsers;
+    }
+
+    public void setListCentralUsers(ArrayList<CentralUser> listCentralUsers) {
+        this.listCentralUsers = listCentralUsers;
+    }
+
+    public ArrayList<AdUser> getListADUsers() {
+        return listADUsers;
+    }
+
+    public void setListADUsers(ArrayList<AdUser> listADUsers) {
+        this.listADUsers = listADUsers;
+    }
+
+    public ArrayList<CentralType> getListCentralType() {
+        return listCentralType;
+    }
+
+    public void setListCentralType(ArrayList<CentralType> listCentralType) {
+        this.listCentralType = listCentralType;
+    }
+
+    public ArrayList<Central> getListCentralwU() {
+        return listCentralwU;
+    }
+
+    public void setListCentralwU(ArrayList<Central> listCentralwU) {
+        this.listCentralwU = listCentralwU;
+    }
     
-    ArrayList<Central> list = new ArrayList<Central>();     //ArrayList for centrals
-    ArrayList<CentralUser> list2 = new ArrayList<CentralUser>();     //ArrayList for centrals users
-    ArrayList<AdUser> list3 = new ArrayList<AdUser>();     //ArrayList for AD users
-
-    public ArrayList<Central> getList() {
-        return list;
-    }
-
-    public void setList(ArrayList<Central> list) {
-        this.list = list;
-    }
-
-    public ArrayList<CentralUser> getList2() {
-        return list2;
-    }
-
-    public void setList2(ArrayList<CentralUser> list2) {
-        this.list2 = list2;
-    }
-
-    public ArrayList<AdUser> getList3() {
-        return list3;
-    }
-
-    public void setList3(ArrayList<AdUser> list3) {
-        this.list3 = list3;
-    }
     
-
+    
+    
     @Override
     public String execute() throws Exception {
         try {
@@ -64,74 +83,118 @@ public class FetchRecords extends ActionSupport {
                 central.setClli(rs.getString("cd"));
                 central.setCtype(rs.getString("tecnologia").concat(" ").concat(rs.getString("tcd")));
                 central.setCports(rs.getInt("puertoOriginal"));
-                list.add(central);
+                listCentrals.add(central);
                 i++;
             }
-            
-           /* String centralUsers = "select uc.username, c.descripcion from usuariocentral uc join central c on uc.fk_idCentral = c.idCentral";
+            String centralUsers = "select * from tipocentral";
             ps = con.prepareStatement(centralUsers);
             rs = ps.executeQuery();
-            int j = 0;
-            while (rs.next() && j < 7) {
-                CentralUser cu = new CentralUser();
-                cu.setCuname(rs.getString("username"));
-                cu.setCuclli(rs.getString("descripcion"));
-                list2.add(cu);
-                j++;
+            while (rs.next()) {
+                CentralType ct = new CentralType();
+                ct.setCtid(rs.getInt("idTipoCentral"));
+                ct.setDescripcion(rs.getString("descripcion"));
+                ct.setTecnologia(rs.getString("tecnologia"));
+                listCentralType.add(ct);
             }
-            
-            String adUsers = "select uad.username, c.descripcion from usuarioad uad join usuarioad_has_usuariocentral uu on (uu.fk_idUsuarioAD = uad.idUsuarioAD) join central c on (uu.fk_idCentral = c.idCentral)";
-            ps = con.prepareStatement(adUsers);
-            rs = ps.executeQuery();
-            int k = 0;
-            while (rs.next() && k < 8) {
-                AdUser adu = new AdUser();
-                adu.setUadname(rs.getString("username"));
-                adu.setUadclli(rs.getString("descripcion"));
-                list3.add(adu);
-                k++;
-            }*/
             con.close();
             return "success";
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
-        }   
+        }
     }
-    
-    public String getUsers(){
+
+    public String getUsersC() {
         try {
             Connection con = Conexion.getConexion();
-            String centralUsers = "select uc.username, c.descripcion from usuariocentral uc join central c on uc.fk_idCentral = c.idCentral";
+            String centralUsers = "select uc.username, c.descripcion as cd, tc.descripcion as tcd, tc.tecnologia from usuariocentral uc join central c on (uc.fk_idCentral = c.idCentral) "
+                    + "join tipocentral tc on (c.fk_idTipoCentral = tc.idTipoCentral)";
             PreparedStatement ps = con.prepareStatement(centralUsers);
             ResultSet rs = ps.executeQuery();
             int j = 0;
             while (rs.next() && j < 7) {
                 CentralUser cu = new CentralUser();
                 cu.setCuname(rs.getString("username"));
-                cu.setCuclli(rs.getString("descripcion"));
-                list2.add(cu);
+                cu.setCuclli(rs.getString("cd"));
+                cu.setCuctype(rs.getString("tecnologia").concat(" ").concat(rs.getString("tcd")));
+                listCentralUsers.add(cu);
                 j++;
             }
             
-            String adUsers = "select uad.username, c.descripcion from usuarioad uad join usuarioad_has_usuariocentral uu on (uu.fk_idUsuarioAD = uad.idUsuarioAD) join "
-                    + "usuariocentral uc on (uc.idusuariocentral = uu.fk_idusuariocentral) join central c on (c.idcentral = uc.fk_idcentral)";
-            ps = con.prepareStatement(adUsers);
+            //Central Users select modal
+            String centrals = "select c.idCentral, c.descripcion as cd, tc.tecnologia, tc.descripcion as tcd from central c join tipocentral tc on (c.fk_idTipoCentral = tc.idTipoCentral) group by c.descripcion";
+            ps = con.prepareStatement(centrals);
             rs = ps.executeQuery();
-            int k = 0;
-            while (rs.next() && k < 8) {
-                AdUser adu = new AdUser();
-                adu.setUadname(rs.getString("username"));
-                adu.setUadclli(rs.getString("descripcion"));
-                list3.add(adu);
-                k++;
+            while (rs.next()) {
+                Central central = new Central();
+                central.setCid(rs.getInt("idCentral"));
+                central.setClli(rs.getString("cd"));
+                central.setCtype(rs.getString("tecnologia").concat(" ").concat(rs.getString("tcd")));
+                listCentralwU.add(central);
             }
+
             con.close();
             return "success";
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
-        }  
+        }
     }
+    public String getUsersAD() {
+        try {
+            Connection con = Conexion.getConexion();
+            String adUsers = "select uad.username, c.descripcion from usuarioad uad join usuarioad_has_usuariocentral uu on (uu.fk_idUsuarioAD = uad.idUsuarioAD) join "
+                    + "usuariocentral uc on (uc.idusuariocentral = uu.fk_idusuariocentral) join central c on (c.idcentral = uc.fk_idcentral)";
+            PreparedStatement ps = con.prepareStatement(adUsers);
+            ResultSet rs = ps.executeQuery();
+            int k = 0;
+            while (rs.next() && k < 8) {
+                AdUser adu = new AdUser();
+                adu.setUadname(rs.getString("username"));
+                adu.setUadclli(rs.getString("descripcion"));
+                listADUsers.add(adu);
+                k++;
+            }
+            
+//            String centrals = "select c.idCentral, c.puertoProxy, c.descripcion as cd, tc.tecnologia, tc.descripcion as tcd from central c join tipocentral tc on (c.fk_idTipoCentral = tc.idTipoCentral)";
+//            ps = con.prepareStatement(centrals);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//                Central central = new Central();
+//                central.setCid(rs.getInt("idCentral"));
+//                central.setPport(rs.getInt("puertoProxy"));
+//                central.setClli(rs.getString("cd"));
+//                central.setCtype(rs.getString("tecnologia").concat(" ").concat(rs.getString("tcd")));
+//                listCentralwU.add(central);
+//            }
+
+            con.close();
+            return "success";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+
+//    public String getCentrals() {
+//        try {
+//            Connection con = Conexion.getConexion();
+//            String centralUsers = "select * from tipocentral";
+//            PreparedStatement ps = con.prepareStatement(centralUsers);
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                CentralType ct = new CentralType();
+//                ct.setCtid(rs.getInt("idTipoCentral"));
+//                ct.setDescripcion(rs.getString("descripcion"));
+//                ct.setTecnologia(rs.getString("tecnologia"));
+//                listCentral.add(ct);
+//            }
+//            con.close();
+//            return "success";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "error";
+//        }
+//    }
 
 }
