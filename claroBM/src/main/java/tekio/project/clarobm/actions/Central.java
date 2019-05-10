@@ -16,6 +16,7 @@ public class Central {
     private String pip;     //ip Proxy
     private int pport;      //pto Proxy
     private String clli;    //descripcion   
+    private String cuname;    //central username 
     private int cports;     //central ports //change for list
 
     public int getCid() {
@@ -73,5 +74,14 @@ public class Central {
     public void setCports(int cports) {
         this.cports = cports;
     }
+
+    public String getCuname() {
+        return cuname;
+    }
+
+    public void setCuname(String cuname) {
+        this.cuname = cuname;
+    }
+    
     
 }

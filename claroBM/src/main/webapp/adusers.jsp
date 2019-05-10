@@ -50,8 +50,8 @@
         <main role="main">
             <div class="album py-5 bg-light">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
                             <div class="table-wrapper shadow">
                                 <div class="table-title">
                                     <div class="row">
@@ -59,7 +59,7 @@
                                             <i class="central-i fas fa-user-shield"></i>
                                             <label class="dat" >Active Directory users</label>                                                                                                                    
                                         </div>
-                                        <div class="col-lg-6 btn-ad">
+                                        <div class="col-lg-6">
                                             <a href="#deleteADUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
                                             <a href="#addADUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add AD User</span></a>                            
                                         </div>
@@ -76,7 +76,9 @@
                                                 </span>
                                             </th>
                                             <th>Username</th>
-                                            <th>Central</th>                            
+                                            <th>Central CLLI</th>
+                                            <th>Central type</th>                            
+                                            <th>Central username</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -91,6 +93,8 @@
                                                 </td>
                                                 <td><s:property value="uadname"/></td>
                                                 <td><s:property value="uadclli"/></td>
+                                                <td><s:property value="uadctype"/></td>
+                                                <td><s:property value="uadcname"/></td>
                                                 <td>
                                                     <a href="#editADUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
                                                     <a href="#deleteADUser" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
@@ -140,10 +144,9 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label>Central</label>
-                                    <select id="inputStateCntral" class="form-control" required>
-                                        <option>Choose...</option>
-                                        <option>...</option>
-                                    </select>
+                                    <s:select headerKey="-1" headerValue="--Select--"
+                                              list="listCentralwU" class="form-control"
+                                              listKey="cid" listValue="clli + ' ' + ctype + ' : ' + cuname"/>
                                 </div>
                             </div>  
                         </div>

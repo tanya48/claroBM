@@ -59,7 +59,7 @@
                                             <i class="central-i fas fa-user-tag"></i>
                                             <label class="dat">Central users </label>                                                                              
                                         </div>
-                                        <div class="col-lg-6 btn-ad">
+                                        <div class="col-lg-6">
                                             <a href="#deleteCentralUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
                                             <a href="#addCentralUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central User</span></a>                            
                                         </div>
@@ -143,7 +143,7 @@
                                 <div class="form-group col-md-12">
                                     <label>Central</label>
                                     <s:select headerKey="-1" headerValue="--Select--"
-                                              list="listCentralwU" class="form-control"
+                                              list="listCentralwT" class="form-control"
                                               listKey="cid" listValue="clli + ' ' + ctype"/>
                                 </div>
                             </div>
