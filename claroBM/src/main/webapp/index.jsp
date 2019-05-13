@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -64,7 +65,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-striped table-hover">
+                                <display:table class="table table-striped table-hover" name="listCentrals" pagesize="2" requestURI="index">
+                                    <display:column title="<span class='custom-checkbox'> <input type='checkbox' id='selectAll'><label for='selectAll'></label></span>">                                               
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                                    </display:column>
+                                    <display:column property="clli" title="CLLI" />
+                                    <display:column property="ctype" title="Central type" />
+                                    <display:column property="cip" title="Central IP" />
+                                    <display:column property="cports" title="Central ports" />
+                                    <display:column property="pip" title="Proxy IP" />
+                                    <display:column property="pport" title="Proxy port" />
+                                    <display:column title="Actions" > 
+                                        <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                        <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                    </display:column>
+                                    <display:setProperty name="paging.banner.placement" value="bottom" />
+                                </display:table>
+<!--                                <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th>
@@ -83,6 +103,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <s:iterator  value="listCentrals">
                                             <tr>
                                                 <td>
@@ -104,7 +125,7 @@
                                             </tr>
                                         </s:iterator>
                                     </tbody>
-                                </table>
+                                </table>-->
                                 <div class="clearfix">
                                     <div class="hint-text"><b>5</b> out of <b>25</b> entries</div>
                                     <ul class="pagination">
