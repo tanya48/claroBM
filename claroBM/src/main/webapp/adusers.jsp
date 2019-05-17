@@ -162,13 +162,16 @@
         <div id="addADUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="addADUser">
+                    <form action="addADUser" method="POST" name="addADForm" onsubmit="return checkInpAD()">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add Active Directory User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <div id="response"></div>
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label>Username</label>
                                     <input name="madname" type="text" class="form-control" required>
@@ -177,7 +180,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label>Central</label>
-                                    <s:select name="lcwu" headerKey="-1" headerValue="--Select--"
+                                    <s:select required="true" name="lcwu" headerKey="-1" headerValue="--Select--"
                                               list="listCentralwU" class="form-control"
                                               listKey="cuid" listValue="clli + ' ' + fullDescription + ' : ' + cuname"/>
                                 </div>

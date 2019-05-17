@@ -196,7 +196,7 @@
         <div id="addCentralUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="addCentralUser" method="POST" onsubmit="return checkInp()" name="addCuForm">
+                    <form action="addCentralUser" method="POST" onsubmit="return checkInpCU()" name="addCuForm">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add Central User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

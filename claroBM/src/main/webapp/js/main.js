@@ -73,7 +73,7 @@ function addFields() {
     }
 }
 
-function checkInp()
+function checkInpCU()
 {
     //For username field
     var x = document.forms["addCuForm"]["mcuname"].value;
@@ -137,6 +137,58 @@ function checkInp()
                 '&times;</button>Password did not match!</div>').hide().appendTo('#response').fadeIn(1000);
 
         $(".ucpassAlert").delay(3000).fadeOut(
+                "normal",
+                function () {
+                    $(this).remove();
+                });
+        $("#response").delay(4000).animate({
+            height: '-=72px'
+        }, 300);
+        return false;
+    }
+}
+function checkInpAD()
+{
+    //For username field
+    var x = document.forms["addADForm"]["madname"].value;
+    var regex = /^[a-zA-Z0-9]+$/; //change for claro Regex
+    if (!x.match(regex))
+    {
+        $("#response").animate({
+            height: '+=72px'
+        }, 300);
+
+        $('<div class="alert alert-danger unameAlert">' +
+                '<button type="button" class="close" data-dismiss="alert">' +
+                '&times;</button>Username cannot contain special characters!</div>').hide().appendTo('#response').fadeIn(1000);
+
+        $(".unameAlert").delay(3000).fadeOut(
+                "normal",
+                function () {
+                    $(this).remove();
+                });
+        $("#response").delay(4000).animate({
+            height: '-=72px'
+        }, 300);
+        return false;
+    }
+}
+function checkInpC()
+{
+    //For username field
+    var x = document.forms["addCuForm"]["mcuname"].value;
+    var regex = /^[a-zA-Z0-9]+$/; //change for claro Regex
+    if (!x.match(regex))
+    {
+        $("#response").animate({
+            height: '+=72px'
+        }, 300);
+
+        $('<div class="alert alert-danger unameAlert">' +
+                '<button type="button" class="close" data-dismiss="alert">' +
+                '&times;</button>Username cannot contain special characters!</div>').hide().appendTo('#response').fadeIn(1000);
+
+        $(".unameAlert").delay(3000).fadeOut(
                 "normal",
                 function () {
                     $(this).remove();
