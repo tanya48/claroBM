@@ -189,14 +189,14 @@ public class InsertRecords extends ActionSupport {
             pss.setString(1, mcuname);
             pss.setString(2, mcupass);
             pss.setInt(3, Integer.parseInt(lcwt));
-            //pss.execute();
+            pss.execute();
             conn.close();
             return SUCCESS;
 
         } catch (Exception ex) {
             Logger.getLogger(InsertRecords.class.getName()).log(Level.SEVERE, null, ex);
             return ERROR;
-        }//To change body of generated methods, choose Tools | Templates.
+        }
     }
 
     public String addADUsers() throws Exception {
@@ -237,7 +237,7 @@ public class InsertRecords extends ActionSupport {
         } catch (Exception ex) {
             Logger.getLogger(InsertRecords.class.getName()).log(Level.SEVERE, null, ex);
             return ERROR;
-        }//To change body of generated methods, choose Tools | Templates.
+        }
     }
 
     public String addCentrals() throws Exception {
@@ -274,7 +274,6 @@ public class InsertRecords extends ActionSupport {
             Logger.getLogger(InsertRecords.class.getName()).log(Level.SEVERE, null, ex);
             return ERROR;
         }
-
     }
 
 }
