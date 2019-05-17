@@ -9,13 +9,20 @@ package tekio.project.clarobm.actions;
  *
  * @author Tanya Tapia
  */
-public class CentralUser {
+public class CentralUser extends Central {
     private int cuid;       //central user id
     private String cuname;  //central user username
-    private String cuclli;  // central user description
-    private String cuctype; //central user central type
-    //Central central = new Central();
+    
+    @Override
+    public void setClli(String clli) {
+        super.setClli(clli); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public void setFullDescription(String fullDescription) {
+        super.setFullDescription(fullDescription); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public int getCuid() {
         return cuid;
     }
@@ -31,32 +38,5 @@ public class CentralUser {
     public void setCuname(String cuname) {
         this.cuname = cuname;
     }
-
-    public String getCuclli() {
-        return cuclli;
-    }
-
-    public void setCuclli(String cuclli) {
-        this.cuclli = cuclli;
-    }
-
-    public String getCuctype() {
-        return cuctype;
-    }
-
-    public void setCuctype(String cuctype) {
-        this.cuctype = cuctype;
-    }
     
-    
-    
-
-    /*public Central getCentral() {
-        return central;
-    }
-
-    public void setCentral(Central central) {
-        this.central = central;
-    }  */  
-
 }

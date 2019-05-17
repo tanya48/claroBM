@@ -14,6 +14,16 @@ public class CentralType {
     private int ctid;
     private String descripcion;
     private String tecnologia;
+    
+    private String fullDescription;
+
+    public String getFullDescription() {
+        return fullDescription;
+    }
+
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
+    }
 
     public int getCtid() {
         return ctid;

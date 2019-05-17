@@ -10,24 +10,80 @@
     <package name="default" namespace="/" extends="struts-default">
         <action name="logout">
             <result name="success">/loginpage.jsp</result>
-        </action>        
-<!--        <action name="addCentral" class="tekio.project.clarobm.actions.addCentral" method="execute">
-            <result name="success">/logout.jsp</result>
-        </action>        -->
+        </action> 
+         
+        <!--CREATE DATA-->
+        <action name="addCentral" class="tekio.project.clarobm.actions.InsertRecords" method="addCentrals">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+        </action>     
+        <action name="addCentralUser" class="tekio.project.clarobm.actions.InsertRecords" method="execute">
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersc</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">usersc</param>
+            </result>
+        </action>  
+        <action name="addADUser" class="tekio.project.clarobm.actions.InsertRecords" method="addADUsers">
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>
+        </action>  
+        
+        <!--READ DATA-->    
         <action name="index" class="tekio.project.clarobm.actions.FetchRecords" method="execute" >
             <result name="success">/index.jsp</result>
         </action>        
         <action name="usersc" class="tekio.project.clarobm.actions.FetchRecords" method="getUsersC" >
             <result name="success">/users.jsp</result>
-        </action>        
+        </action>
         <action name="usersad" class="tekio.project.clarobm.actions.FetchRecords" method="getUsersAD" >
             <result name="success">/adusers.jsp</result>
-        </action>        
+        </action>
+        
+        <!--UPDATE DATA-->
+                   
+          
+        <!--DELETE DATA-->  
         <action name="deleteCentral" class="tekio.project.clarobm.actions.DeleteRecords" method="execute" >
-            <result name="success">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
         </action>        
-<!--        <action name="getCentrals" class="tekio.project.clarobm.actions.FetchRecords" method="getCentrals" >
-            <result name="success">/index.jsp</result>
+        <action name="deleteCentralUser" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteCU" >
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersc</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">usersc</param>
+            </result>
+        </action>        
+        <action name="deleteADUser" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteAD" >
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>
+        </action>        
+<!--        <action name="deleteAllCentral" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteAll" >
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
         </action>        -->
     </package>
 </struts>

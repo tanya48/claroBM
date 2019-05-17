@@ -9,13 +9,26 @@ package tekio.project.clarobm.actions;
  *
  * @author Tanya Tapia
  */
-public class AdUser {
+public class AdUser extends Central {
     private int uadid;      // AD id
     private String uadname; // AD username
-    private String uadclli; // AD description
-    private String uadctype; // AD description
-    private String uadcname; // AD description
+    
+    @Override
+    public void setCuname(String cuname) {
+        super.setCuname(cuname); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public void setClli(String clli) {
+        super.setClli(clli); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setFullDescription(String fullDescription) {
+        super.setFullDescription(fullDescription); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+   
     public int getUadid() {
         return uadid;
     }
@@ -33,30 +46,5 @@ public class AdUser {
     public void setUadname(String uadname) {
         this.uadname = uadname;
     }
-
-    public String getUadclli() {
-        return uadclli;
-    }
-
-    public void setUadclli(String uadclli) {
-        this.uadclli = uadclli;
-    }
-
-    public String getUadctype() {
-        return uadctype;
-    }
-
-    public void setUadctype(String uadctype) {
-        this.uadctype = uadctype;
-    }
-
-    public String getUadcname() {
-        return uadcname;
-    }
-
-    public void setUadcname(String uadcname) {
-        this.uadcname = uadcname;
-    }
-    
     
 }

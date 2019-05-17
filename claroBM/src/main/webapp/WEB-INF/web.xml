@@ -20,8 +20,12 @@
     <welcome-file-list>
         <welcome-file>loginpage.jsp</welcome-file>
     </welcome-file-list>
+    <context-param>
+        <param-name>displaytag</param-name>
+        <param-value>/WEB-INF/displaytag.properties</param-value>
+    </context-param>
    
-<!--    <security-constraint>
+    <!--    <security-constraint>
         <web-resource-collection>
             <web-resource-name>
                 Private Resource

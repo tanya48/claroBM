@@ -60,82 +60,66 @@
                                             <i class=" central-i fas fa-warehouse"></i><label class="dat" >Centrals</label>                                        
                                         </div>
                                         <div class="col-lg-6">
-                                            <a href="#deleteCentral" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                            <a href="#deleteAllCentral" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
                                             <a href="#addCentral" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central</span></a>                            
                                         </div>
                                     </div>
                                 </div>
-                                <display:table class="table table-striped table-hover" name="listCentrals" pagesize="2" requestURI="index">
+                                <display:table uid="row" class="table table-striped table-hover" name="listCentrals" pagesize="7" requestURI="index">
+                                    <!--
                                     <display:column title="<span class='custom-checkbox'> <input type='checkbox' id='selectAll'><label for='selectAll'></label></span>">                                               
                                         <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <input type="checkbox" id="checkbox1" name="ccid" value="<s:property value="%{#attr.row.cid}" />">
                                             <label for="checkbox1"></label>
                                         </span>
                                     </display:column>
+                                    -->
                                     <display:column property="clli" title="CLLI" />
-                                    <display:column property="ctype" title="Central type" />
+                                    <display:column property="fullDescription" title="Central type" />
                                     <display:column property="cip" title="Central IP" />
                                     <display:column property="cports" title="Central ports" />
+                                    <display:column title="Puertos">
+                                        <s:iterator value="listCentralPorts">
+                                            <p><s:property value="cport"/></p>
+                                        </s:iterator>
+                                    </display:column>
                                     <display:column property="pip" title="Proxy IP" />
                                     <display:column property="pport" title="Proxy port" />
-                                    <display:column title="Actions" > 
-                                        <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                        <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                    <display:column title="Actions" >
+                                        <a href="#editCentral<s:property value="#cidd.cid" />" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
+                                        <a href="#deleteCentral<s:property value="%{#attr.row.cid}" />" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                        <!-- Delete Central Modal -->
+                                        <div id="deleteCentral<s:property value="%{#attr.row.cid}" />" class="modal fade">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="deleteCentral" method="POST">
+                                                        <div class="modal-header">						
+                                                            <h4 class="modal-title">Delete Central</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-row">
+                                                                <div class="form-group col-lg-12">
+                                                                    <input type="hidden" name="cid" value="<s:property value='%{#attr.row.cid}'/>">
+                                                                    <p>Are you sure you want to delete central <strong><s:property value='%{#attr.row.clli}'/> <s:property value='%{#attr.row.fullDescription}'/></strong> ?</p>
+                                                                    <div class="alert alert-warning" role="alert">
+                                                                        This will also remove any USER related or associated with it. <br>
+                                                                        This action cannot be undone                                                                      
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                            <input type="submit" class="btn btn-danger" value="Delete">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </display:column>
                                     <display:setProperty name="paging.banner.placement" value="bottom" />
                                 </display:table>
-<!--                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <span class="custom-checkbox">
-                                                    <input type="checkbox" id="selectAll">
-                                                    <label for="selectAll"></label>
-                                                </span>
-                                            </th>
-                                            <th>CLLI</th>
-                                            <th>Central type</th>                            
-                                            <th>Central IP</th>
-                                            <th>Central ports</th>
-                                            <th>Proxy IP</th>
-                                            <th>Proxy port</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <s:iterator  value="listCentrals">
-                                            <tr>
-                                                <td>
-                                                    <span class="custom-checkbox">
-                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                        <label for="checkbox1"></label>
-                                                    </span>
-                                                </td>
-                                                <td><s:property value="clli"/></td>
-                                                <td><s:property value="ctype"/></td>
-                                                <td><s:property value="cip"/></td>
-                                                <td><s:property value="cports"/></td>
-                                                <td><s:property value="pip"/></td>
-                                                <td><s:property value="pport"/></td>
-                                                <td>
-                                                    <a href="#editCentral" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                                    <a href="#deleteCentral" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                                                </td>
-                                            </tr>
-                                        </s:iterator>
-                                    </tbody>
-                                </table>-->
-                                <div class="clearfix">
-                                    <div class="hint-text"><b>5</b> out of <b>25</b> entries</div>
-                                    <ul class="pagination">
-                                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                        <li class="page-item active"><a href="#" class="page-link">2</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -161,11 +145,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-7">
                                     <label>CLLI</label>
-                                    <input name="clli" type="text" class="form-control" required>
+                                    <input name="mclli" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label>Central type</label>
-                                    <s:select headerKey="-1" headerValue="--Select--"
+                                    <s:select name="lc" headerKey="-1" headerValue="--Select--"
                                               list="listCentralType" class="form-control"
                                               listKey="ctid" listValue="tecnologia + ' ' + descripcion "/>
                                 </div>
@@ -173,21 +157,21 @@
                             <div class="form-row">
                                 <div class="form-group col-md-7">
                                     <label>Proxy IP</label>
-                                    <input name="pip" type="text" class="form-control" required>
+                                    <input name="mpip" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label>Proxy port</label>
-                                    <input name="pport" type="text" class="form-control" required>
+                                    <input name="mpport" type="text" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-7">
                                     <label>Central IP</label>
-                                    <input name="cip" type="text" class="form-control" required>
+                                    <input name="mcip" type="text" class="form-control" required>
                                 </div>                                
                                 <div class="form-group col-md-3">
                                     <label>Central ports</label>
-                                    <input class="form-control" type="text" placeholder="# of ports" id="member" name="member" value="">
+                                    <input class="form-control" type="text" placeholder="# of ports" id="member" name="member" value="" required>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label style="color: #fff; ">__</label>
@@ -206,8 +190,9 @@
                 </div>
             </div>
         </div>
+
         <!-- Edit Central Modal -->
-        <div id="editCentral" class="modal fade">
+        <div id="editCentral<s:property value="#cidd.cid"/>" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -220,6 +205,7 @@
                                 <div class="form-group col-md-7">
                                     <label>CLLI</label>
                                     <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" value="<s:property value='#cidd.cid'/>" required>
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label>Central type</label>
@@ -258,20 +244,24 @@
                 </div>
             </div>
         </div>
+
         <!-- Delete Central Modal -->
-        <div id="deleteCentral" class="modal fade">
+        <div id="deleteAllCentral" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="deleteCentral">
+                    <form action="deleteAllCentral" method="POST">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Central</h4>
+                            <h4 class="modal-title">Delete Centrals</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-lg-12">
-                                    <p>Are you sure you want to delete these Records?</p>
-                                    <p class="text-warning"><medium>This action cannot be undone.</medium></p>
+                                    <p>Are you sure you want to delete central <strong>All these records</strong> ?</p>
+                                    <div class="alert alert-warning" role="alert">
+                                        This will also remove any USER related or associated with it. <br>
+                                        This action cannot be undone                                                                      
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -283,6 +273,7 @@
                 </div>
             </div>
         </div>
+
         <!--        -->  
         <!-- Jquery JS-->
         <script src="js/jquery-3.4.0.min.js"></script>
@@ -290,82 +281,6 @@
         <!-- Bootstrap JS-->
         <script src="js/bootstrap.js"></script>
         <!-- Main JS-->
-        <script type="text/javascript">
-                                        function noBack()
-                                        {
-                                            window.history.forward();
-                                        }
-                                        noBack();
-                                        window.onload = noBack;
-                                        window.onpageshow = function (evt) {
-                                            if (evt.persisted)
-                                                noBack();
-                                        }
-                                        window.onunload = function () {
-                                            void (0);
-                                        }
-                                        function addFields() {
-                                            // Number of inputs to create
-                                            var number = document.getElementById("member").value;
-                                            // Container <div> where dynamic content will be placed
-                                            var container = document.getElementById("container");
-                                            // Clear previous contents of the container
-                                            while (container.hasChildNodes()) {
-                                                container.removeChild(container.lastChild);
-                                            }
-                                            for (i = 0; i < number; i++) {
-                                                // Append a node with a random text
-                                                container.appendChild(document.createTextNode("Port " + (i + 1)));
-                                                // Create an <input> element, set its type and name attributes
-                                                var input = document.createElement("input");
-                                                input.type = "text";
-                                                input.setAttribute('class', 'form-control');
-                                                input.name = "port" + i;
-                                                container.appendChild(input);
-                                                // Append a line break 
-                                                container.appendChild(document.createElement("br"));
-                                            }
-                                        }
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                // Activate tooltip
-                $('[data-toggle="tooltip"]').tooltip();
-
-                // Select/Deselect checkboxes
-                var checkbox = $('table tbody input[type="checkbox"]');
-                $("#selectAll").click(function () {
-                    if (this.checked) {
-                        checkbox.each(function () {
-                            this.checked = true;
-                        });
-                    } else {
-                        checkbox.each(function () {
-                            this.checked = false;
-                        });
-                    }
-                });
-                checkbox.click(function () {
-                    if (!this.checked) {
-                        $("#selectAll").prop("checked", false);
-                    }
-                });
-                //                $.ajax({
-                //                    type: "GET",
-                //                    url: "getmydata",
-                //                    success: function (itr) {
-                //                        $("#centralAdd").html("");
-                //                        $("#centralAdd").append("<option value = '0'>Select central type </option>");
-                //                        $.each(itr.dataList2, function () {
-                //                            $("#centralAdd").append("<option>" + this + "</option>");
-                //                        });
-                //
-                //                    },
-                //                    error: function (itr) {
-                //                        alert("No values found..!!");
-                //                    }
-                //                });
-            });
-        </script>
+        <script src="js/main.js" type="text/javascript"></script>
 </html>
 
