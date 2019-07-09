@@ -15,7 +15,13 @@ import java.sql.SQLException;
  */
 public class Conexion {
     public static Connection getConexion() throws SQLException{
-        String cadena = "jdbc:mysql://localhost/clarodb?user=root&serverTimezone=America/Mexico_City";
+
+        String url = "jdbc:mysql://172.18.6.11:3306/claro?&serverTimezone=America/Mexico_City";
+        String user = "claro2";
+        String pass = "claro2";
+//        String url = "jdbc:mysql://localhost/clarodb?&serverTimezone=America/Mexico_City";
+//        String user = "root";
+//        String pass = "";
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -23,7 +29,7 @@ public class Conexion {
             System.out.println(ex.getMessage());
         }
         
-        return DriverManager.getConnection(cadena);
+        return DriverManager.getConnection(url,user,pass);
     }
     
     public static void main(String[] args) throws SQLException {

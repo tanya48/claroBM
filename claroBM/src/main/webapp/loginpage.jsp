@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,7 +27,7 @@
     <body class="text-center index-si">
         <div class="au-div col-lg-5 m-auto shadow">
             <!--<form class="form-signin" action="j_security_check" method="POST">-->
-            <form class="form-signin" action="index" method="POST">
+            <form class="form-signin" action="login" method="POST">
                 <img class="au-img" src="images/clarologo.png" alt="">
                 <label for="inputUser" class="sr-only">Username</label>
                 <input type="text" id="inputUser" class="form-control" placeholder="Username" name="username" required autofocus>

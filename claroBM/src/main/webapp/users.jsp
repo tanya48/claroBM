@@ -30,13 +30,13 @@
                     <div class="collapse navbar-collapse" id="navbarsExample07">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="<s:url action='index'/>">Centrals <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="index.action">Centrals <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="<s:url action='usersc'/>">Central users</a>
-                                    <a class="dropdown-item" href="<s:url action='usersad'/>">Active Directory users</a>
+                                    <a class="dropdown-item" href="usersc.action">Central users</a>
+                                    <a class="dropdown-item" href="usersad.action">Active Directory users</a>
                                 </div>
                             </li>                            
                         </ul>
@@ -55,129 +55,107 @@
                             <div class="table-wrapper shadow">
                                 <div class="table-title">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-5">
                                             <i class="central-i fas fa-user-tag"></i>
 <!--                                            <p for="resultado" style="color: #FF0000"><s:actionerror/></p> -->
                                             <label class="dat">Central users </label>                                                                              
                                         </div>
-                                        <div class="col-lg-6">
+<!--                                        <div class="col-lg-5">
                                             <a href="#deleteCentralUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
                                             <a href="#addCentralUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central User</span></a>                            
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
-                                <display:table uid="row" class="table table-striped table-hover" name="listCentralUsers" pagesize="7" requestURI="usersc">
-                                    <display:column title="<span class='custom-checkbox'> <input type='checkbox' id='selectAll'><label for='selectAll'></label></span>">                                               
-                                        <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                            <label for="checkbox1"></label>
-                                        </span>
-                                    </display:column>
-                                    <display:column property="cuname" title="Username" />
-                                    <display:column property="clli" title="Central CLLI" />
-                                    <display:column property="fullDescription" title="Central type" />
-                                    <display:column title="Actions" > 
-                                        <a href="#editCentralUser" class="edit" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-pencil-alt"></i></a>
-                                        <a href="#deleteCentralUser<s:property value="%{#attr.row.cuid}" />" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
-                                        <!-- Delete Central User Modal-->
-                                        <div id="deleteCentralUser<s:property value="%{#attr.row.cuid}" />" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <form action="deleteCentralUser" method="POST">
-                                                        <div class="modal-header">						
-                                                            <h4 class="modal-title">Delete Central User</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        </div>
-                                                        <div class="modal-body">					
-                                                            <div class="form-row">
-                                                                <div class="form-group col-lg-12">
-                                                                    <input type="hidden" name="cuid" value="<s:property value='%{#attr.row.cuid}'/>">
-                                                                    <p>Are you sure you want to delete <strong> <s:property value='%{#attr.row.cuname}'/> </strong> ?</p>
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        This will also remove any Active Directory User related or associated with it.<br>
-                                                                        This action cannot be undone.
+                                <form action="deleteAllCu" method="POST">
+                                    <display:table uid="row" class="table table-striped table-hover" name="listCentralUsers" pagesize="6" requestURI="usersc">
+                                        <display:column title="<span class='custom-checkbox'> <input type='checkbox' id='selectAll'><label for='selectAll'></label></span>">                                               
+                                            <span class="custom-checkbox">
+                                                <input type="checkbox" id="checkbox1" name="idcu[${row_rowNum}]" value="<s:property value="%{#attr.row.cuid}"/>">
+                                                <label for="checkbox1"></label>
+                                            </span>
+                                        </display:column>
+                                        <display:column property="cuname" title="Username" />
+                                        <display:column property="clli" title="Central CLLI" />
+                                        <display:column property="fullDescription" title="Central type" />
+                                        <display:column title="Edit" >
+                                            <form action="editCU" method="POST">
+                                                <input type='hidden' value="<s:property value="%{#attr.row.cuid}"/>" name='cuid'/>
+                                                <button type="submit" class="btn btn-default2">
+                                                    <i style="color: #FFC107;" class="fas fa-pencil-alt"></i>
+                                                </button>
+                                            </form>
+                                        </display:column>
+                                        <display:column title="Delete" > 
+                                            <a href="#deleteCentralUser<s:property value="%{#attr.row.cuid}" />" class="delete" data-toggle="modal"><i data-toggle="tooltip" class="fas fa-trash-alt"></i></a>
+                                            <!-- Delete Central User Modal-->
+                                            <div id="deleteCentralUser<s:property value="%{#attr.row.cuid}" />" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <form action="deleteCentralUser" method="POST">
+                                                            <div class="modal-header">						
+                                                                <h4 class="modal-title">Delete Central User</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">					
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-lg-12">
+                                                                        <input type="hidden" name="cuid" value="<s:property value='%{#attr.row.cuid}'/>">
+                                                                        <p>Are you sure you want to delete <strong> <s:property value='%{#attr.row.cuname}'/> </strong> ?</p>
+                                                                        <div class="alert alert-warning" role="alert">
+                                                                            This will also remove any Active Directory User related or associated with it.<br>
+                                                                            This action cannot be undone.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                            <input type="submit" class="btn btn-danger" value="Delete">
-                                                        </div>
-                                                    </form>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <input type="submit" class="btn btn-danger" value="Delete">
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>  
-                                        <!-- Edit Central User Modal-->
-                                        <div id="editCentralUser" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <form>
-                                                        <div class="modal-header">						
-                                                            <h4 class="modal-title">Edit Central User</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            </div>  
+                                        </display:column>
+                                        <display:footer>
+                                            <div class="row align-content-end ">
+                                                <div class="col-lg-12 fot align-self-end">
+                                                    <a href="#deleteAllCentralUser" class="btn btn-danger" data-toggle="modal"><i class="fas fa-minus-circle" ></i> <span>Delete</span></a>						
+                                                    <a href="#addCentralUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle" ></i> <span>Add Central User</span></a>
+                                                    <!-- Delete Central User Modal -->
+                                                    <div id="deleteAllCentralUser" class="modal fade">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <form action="deleteAllCu" method="POST">
+                                                                    <div class="modal-header">						
+                                                                        <h4 class="modal-title">Delete Central Users</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-row">
+                                                                            <div class="form-group col-lg-12">
+                                                                                <p>Are you sure you want to delete central <strong>All these records</strong> ?</p>
+                                                                                <div class="alert alert-warning" role="alert">
+                                                                                    This will also remove any USER related or associated with it. <br>
+                                                                                    This action cannot be undone                                                                      
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <input type="button" class="btn btn-da btn-default" data-dismiss="modal" value="Cancel">
+                                                                        <input type="submit" class="btn btn-da btn-danger" value="Delete">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-row">
-                                                                <div class="form-group col-lg-12">
-                                                                    <input type="hidden" value="<s:property value="%{#attr.row.cuid}" />"/>
-                                                                    <label>Username</label>
-                                                                    <input type="text" value="<s:property value="%{#attr.row.cuname}"/>" class="form-control" required>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label>Central</label>
-                                                                    <select id="centralEdit" class="form-control" required>
-                                                                        <option>Choose...</option>
-                                                                        <option>...</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="form-group col-lg-12">
-                                                                    <label>Old password</label>
-                                                                    <input type="password" class="form-control" required>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="form-group col-md-6">
-                                                                    <label>New password</label>
-                                                                    <input type="password" class="form-control" required>
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label>Confirm password</label>
-                                                                    <input type="password" class="form-control" required>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="text-warning">- Minimum length: 8 characters</label>                                    
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="text-warning">- At least one special character</label>
-                                                                </div>
-                                                            </div>                            
-                                                            <div class="form-row">
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="text-warning">- At least one number and one letter</label>
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="text-warning">- Must contain a capital letter</label>
-                                                                </div>
-                                                            </div>                            
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                            <input type="submit" class="btn btn-info" value="Save">
-                                                        </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </display:column>
-                                    <display:setProperty name="paging.banner.placement" value="bottom" />
-                                </display:table>
+                                            </div> 
+                                        </display:footer>
+                                        <display:setProperty name="paging.banner.placement" value="bottom" />
+                                    </display:table>
+                                </form> 
                             </div>
                         </div>
                     </div>
@@ -196,12 +174,12 @@
         <div id="addCentralUser" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="addCentralUser" method="POST" onsubmit="return checkInpCU()" name="addCuForm">
+                    <form action="addCentralUser" method="POST" onsubmit="return checkCU()">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add Central User</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        
+
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-lg-12">
@@ -210,45 +188,42 @@
                                 <div class="form-group col-lg-12">
                                     <label>Username</label>
                                     <input name="mcuname" id="mcuname" type="text" class="form-control" required>
+                                    <span id="em_cuname" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label>Central</label>
-                                    <s:select required="true" name="lcwt" headerKey="-1" headerValue="--Select--"
+                                    <s:select id="lcwt" requiredLabel="true" name="lcwt" headerKey="-1" headerValue="--Select--"
                                               list="listCentralwT" class="form-control"
                                               listKey="cid" listValue="clli + ' ' + fullDescription"/>
+                                    <span id="em_lcwt" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Password</label>
                                     <input name="mcupass" id="mcupass" type="password" class="form-control" required>
+                                    <span id="em_cupass" class="text-danger"></span>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Confirm password</label>
                                     <input name="mcucpass" id="mcucpass" type="password" class="form-control" required>
+                                    <span id="em_cucpass" class="text-danger"></span>
+                                    <span id="em_cucpass2" class="text-success"></span>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- Minimum length: 8 characters</label>                                    
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="text-warning">- At least one special character</label>
-                                </div>
-                            </div>                            
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label class="text-warning">- At least one number and one letter</label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="text-warning">- Must contain a capital letter</label>
+                                    <label class="text-warning">- 4 to 8 characters</label>                                    
                                 </div>
-                            </div>                            
+                            </div>                                                      
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input id="cancelCentralUser" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                             <input type="submit" class="btn btn-success" value="Add">
                         </div>
                     </form>

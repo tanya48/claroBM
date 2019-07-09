@@ -89,6 +89,22 @@ Form Login
     width: 160px;
     height: 58px;
 }
+.au404-img {
+    width: 130px;
+    height: 130px;
+    margin-top: -100px;
+}
+.au404{
+    font-size: 9rem;
+    color: #ee2323;
+}
+.au4042{
+    font-size: 1.5rem;
+    color: #ee2323;
+}
+.au4043{
+    font-size: 1.5rem;
+}
 
 @media (max-width: 200px) {
     .au-img {
@@ -202,6 +218,7 @@ Navbar
     border-radius: 2px;
     border: none;
     outline: none !important;
+    margin-top: 2px;
     margin-left: 10px;
 }
 .table-title .btn i {
@@ -370,3 +387,70 @@ i.central-i {
 
 }
 
+/*Edit jsp*/
+
+.editModal .form-group {
+    font-size: .8rem;
+}
+
+.editModal .form-control {
+    font-size: .8rem;
+}
+
+.editModal .btn {
+    border-radius: 2px;
+}
+
+.table-title .dat-2 {
+    font-size: 1.2rem;
+    color: #218838;
+}
+
+.fot {
+    margin-top: -50px;
+    padding-bottom: 15px;
+}
+
+.fot .btn {
+    color: #fff;
+    float: right;
+    font-size: .8rem;
+    border: none;
+    min-width: 50px;
+    //min-width: 40px;
+    border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+}
+.fot .btn i {
+    float: left;
+    font-size: 1.25rem;
+    margin-right: 10px;
+}
+
+.fot .btn span {
+    float: left;
+}
+
+
+.modal .btn-da {
+    border-radius: 2px;
+    min-width: 100px;
+    font-size: .9rem;
+}
+
+/* PAGGINATION*/
+
+.pag-img {
+    height: 20px;
+    width: 20px;
+}
+
+.next {
+    font-size: 1rem;
+}
+
+.next-2 {
+    font-size: 0.8rem;
+}

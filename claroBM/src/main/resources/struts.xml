@@ -4,11 +4,38 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <constant name="struts.devMode" value="true" />
+    <!--<constant name="struts.devMode" value="true" />-->
     <constant name="struts.configuration.xml.reload" value="true" />
-  
-    <package name="default" namespace="/" extends="struts-default">
+    <package name="default" extends="struts-default, json-default">
+        <interceptors>
+            <interceptor name="UnAuthorizeuser" class="tekio.project.clarobm.interceptors.LogoutInterceptor"/>
+            <interceptor name="Authorizeuser" class="tekio.project.clarobm.interceptors.loginInterceptor"></interceptor>
+            <interceptor name="catchHeader" class="tekio.project.clarobm.interceptors.CatchingHeaderInterceptor"/>
+            <interceptor-stack name="myStack2">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="UnAuthorizeuser" />
+            </interceptor-stack>
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="Authorizeuser" />
+                <interceptor-ref name="catchHeader"/>
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="myStack" />
+        <global-results>
+            <result name="login">loginpage.jsp</result>
+        </global-results>
+        
+        <action name="login" class="tekio.project.clarobm.actions.loginAction" method="execute">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+            <result name="error">/loginpage.jsp</result>
+        </action>
+     
         <action name="logout">
+            <interceptor-ref name="myStack2"/>
             <result name="success">/loginpage.jsp</result>
         </action> 
          
@@ -17,73 +44,140 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">index</param>
             </result>
-            <result name="error" type="redirectAction">
+            <!--            <result name="error" type="redirectAction">
                 <param name="actionName">index</param>
-            </result>
+            </result>-->
+            <result name="error">/error.jsp</result>
         </action>     
         <action name="addCentralUser" class="tekio.project.clarobm.actions.InsertRecords" method="execute">
             <result name="success" type="redirectAction">
                 <param name="actionName">usersc</param>
             </result>
-            <result name="error" type="redirectAction">
+            <!--            <result name="error" type="redirectAction">
                 <param name="actionName">usersc</param>
-            </result>
+            </result>-->
+            <result name="error">/error.jsp</result>
         </action>  
         <action name="addADUser" class="tekio.project.clarobm.actions.InsertRecords" method="addADUsers">
             <result name="success" type="redirectAction">
                 <param name="actionName">usersad</param>
             </result>
-            <result name="error" type="redirectAction">
+            <!--            <result name="error" type="redirectAction">
                 <param name="actionName">usersad</param>
-            </result>
+            </result>-->
+            <result name="error">/error.jsp</result>
         </action>  
         
         <!--READ DATA-->    
         <action name="index" class="tekio.project.clarobm.actions.FetchRecords" method="execute" >
             <result name="success">/index.jsp</result>
+            <result name="error">/loginpage.jsp</result>
         </action>        
         <action name="usersc" class="tekio.project.clarobm.actions.FetchRecords" method="getUsersC" >
             <result name="success">/users.jsp</result>
+            <result name="error">/error.jsp</result>
         </action>
         <action name="usersad" class="tekio.project.clarobm.actions.FetchRecords" method="getUsersAD" >
             <result name="success">/adusers.jsp</result>
+            <result name="error">/error.jsp</result>
         </action>
         
         <!--UPDATE DATA-->
-                   
+        <action name="editCentral" class="tekio.project.clarobm.actions.FetchRecords" method="getCentralA">
+            <result name="success">/editC.jsp</result>
+        </action>           
+        <action name="updateCentral" class="tekio.project.clarobm.actions.UpdateRecords" method="execute">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+            <!--            <result name="error" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>-->
+            <result name="error">/error.jsp</result>
+        </action>           
+        <action name="editCU" class="tekio.project.clarobm.actions.FetchRecords" method="getCUA">
+            <result name="success">/editCU.jsp</result>
+        </action>           
+        <action name="updateCU" class="tekio.project.clarobm.actions.UpdateRecords" method="updateCU">
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersc</param>
+            </result>
+            <!--            <result name="error" type="redirectAction">
+                <param name="actionName">usersc</param>
+            </result>-->
+            <result name="error">/error.jsp</result>
+        </action>           
+        <action name="editAD" class="tekio.project.clarobm.actions.FetchRecords" method="getADA">
+            <result name="success">/editAD.jsp</result>
+        </action>           
+        <action name="updateAD" class="tekio.project.clarobm.actions.UpdateRecords" method="updateAD">
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>
+            <!--            <result name="error" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>-->
+            <result name="error">/error.jsp</result>
+        </action>           
           
         <!--DELETE DATA-->  
         <action name="deleteCentral" class="tekio.project.clarobm.actions.DeleteRecords" method="execute" >
             <result name="success" type="redirectAction">
                 <param name="actionName">index</param>
             </result>
-            <result name="error" type="redirectAction">
+            <!--            <result name="error" type="redirectAction">
                 <param name="actionName">index</param>
-            </result>
+            </result>-->
+            <result name="error">/error.jsp</result>
         </action>        
         <action name="deleteCentralUser" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteCU" >
             <result name="success" type="redirectAction">
                 <param name="actionName">usersc</param>
             </result>
-            <result name="error" type="redirectAction">
+            <!--            <result name="error" type="redirectAction">
                 <param name="actionName">usersc</param>
-            </result>
+            </result>-->
+            <result name="error">/error.jsp</result>
         </action>        
         <action name="deleteADUser" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteAD" >
             <result name="success" type="redirectAction">
                 <param name="actionName">usersad</param>
             </result>
-            <result name="error" type="redirectAction">
+            <!--            <result name="error" type="redirectAction">
                 <param name="actionName">usersad</param>
-            </result>
-        </action>        
-<!--        <action name="deleteAllCentral" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteAll" >
+            </result>-->
+            <result name="error">/error.jsp</result>
+        </action>       
+        <!--CHECK DATA-->
+        <action name="checkPort" class="tekio.project.clarobm.actions.checkData" method="execute" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="deleteAllCentral" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteAll" >
             <result name="success" type="redirectAction">
                 <param name="actionName">index</param>
             </result>
-            <result name="error" type="redirectAction">
+            <!--            <result name="error" type="redirectAction">
                 <param name="actionName">index</param>
+            </result>-->
+            <result name="error">/error.jsp</result>
+        </action>        
+        <action name="deleteAllCu" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteAllCu" >
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersc</param>
             </result>
-        </action>        -->
+            <!--            <result name="error" type="redirectAction">
+                <param name="actionName">usersc</param>
+            </result>-->
+            <result name="error">/error.jsp</result>
+        </action>        
+        <action name="deleteAllAd" class="tekio.project.clarobm.actions.DeleteRecords" method="deleteAllAd" >
+            <result name="success" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>
+            <!--            <result name="error" type="redirectAction">
+                <param name="actionName">usersad</param>
+            </result>-->
+            <result name="error">/error.jsp</result>
+        </action>        
     </package>
 </struts>

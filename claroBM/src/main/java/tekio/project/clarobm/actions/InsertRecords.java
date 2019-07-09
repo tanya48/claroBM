@@ -23,7 +23,6 @@ public class InsertRecords extends ActionSupport {
     //For Central User
     private String mcuname;
     private String mcupass;
-    private String mcucpass;
     private String lcwt;
 
     //For Central
@@ -35,7 +34,6 @@ public class InsertRecords extends ActionSupport {
     private int mcid;
     private Central central;
     private ArrayList<CentralPorts> cp = new ArrayList<>();
-    private int member;
 
     //For AD User
     private String madname;
@@ -43,96 +41,44 @@ public class InsertRecords extends ActionSupport {
     private int madid;
     private int madcid;
 
-    public int getMadcid() {
-        return madcid;
-    }
-
     public void setMadcid(int madcid) {
         this.madcid = madcid;
-    }
-
-    public String getMadname() {
-        return madname;
     }
 
     public void setMadname(String madname) {
         this.madname = madname;
     }
 
-    public String getLcwu() {
-        return lcwu;
-    }
-
     public void setLcwu(String lcwu) {
         this.lcwu = lcwu;
-    }
-
-    public int getMadid() {
-        return madid;
     }
 
     public void setMadid(int madid) {
         this.madid = madid;
     }
 
-    public int getMember() {
-        return member;
-    }
-
-    public void setMember(int member) {
-        this.member = member;
-    }
-
-    public ArrayList<CentralPorts> getCp() {
-        return cp;
-    }
-
     public void setCp(ArrayList<CentralPorts> cp) {
         this.cp = cp;
-    }
-
-    public int getMcid() {
-        return mcid;
     }
 
     public void setMcid(int mcid) {
         this.mcid = mcid;
     }
 
-    public String getMclli() {
-        return mclli;
-    }
-
     public void setMclli(String mclli) {
         this.mclli = mclli;
-    }
-
-    public String getLc() {
-        return lc;
     }
 
     public void setLc(String lc) {
         this.lc = lc;
     }
 
-    public String getMpip() {
-        return mpip;
-    }
-
     public void setMpip(String mpip) {
         this.mpip = mpip;
     }
 
-    public String getMpport() {
-        return mpport;
-    }
-
     public void setMpport(String mpport) {
         this.mpport = mpport;
-    }
-
-    public String getMcip() {
-        return mcip;
     }
 
     public void setMcip(String mcip) {
@@ -147,39 +93,19 @@ public class InsertRecords extends ActionSupport {
         this.central = central;
     }
 
-    
-    public String getLcwt() {
-        return lcwt;
-    }
-
     public void setLcwt(String lcwt) {
         this.lcwt = lcwt;
-    }
-
-    public String getMcuname() {
-        return mcuname;
     }
 
     public void setMcuname(String mcuname) {
         this.mcuname = mcuname;
     }
 
-    public String getMcupass() {
-        return mcupass;
-    }
-
     public void setMcupass(String mcupass) {
         this.mcupass = mcupass;
     }
 
-    public String getMcucpass() {
-        return mcucpass;
-    }
-
-    public void setMcucpass(String mcucpass) {
-        this.mcucpass = mcucpass;
-    }
-
+    //For Central Users
     @Override
     public String execute() throws Exception {
         try {
@@ -199,17 +125,18 @@ public class InsertRecords extends ActionSupport {
         }
     }
 
+    //For AD Users
     public String addADUsers() throws Exception {
         try {
             Connection conn = Conexion.getConexion();
             //For usuarioad table
             String sql = "INSERT INTO usuarioad(username) VALUES(?)";
             PreparedStatement pss = conn.prepareStatement(sql);
-            pss.setString(1, madname);
+            //pss.setString(1, maddom.concat("/").concat(madname));
+            pss.setString(1,madname);
             pss.execute();
 
             //For uasuarioad_has_usuariocentral
-            
             //Getting idUsuarioAD
             String uadid = "SELECT MAX(idUsuarioAD) from usuarioad";
             pss = conn.prepareStatement(uadid);
@@ -240,6 +167,7 @@ public class InsertRecords extends ActionSupport {
         }
     }
 
+    //For Centrals
     public String addCentrals() throws Exception {
         try {
             Connection conn = Conexion.getConexion();
@@ -248,12 +176,12 @@ public class InsertRecords extends ActionSupport {
             pss.setString(1, mcip);
             pss.setString(2, mpip);
             pss.setInt(3, Integer.parseInt(mpport));
-            pss.setString(4, mclli);
+            pss.setString(4, mclli.toUpperCase());
             pss.setInt(5, Integer.parseInt(lc));
             pss.execute();
 
             //For inserting in ports table
-            String centralID = "SELECT MAX(idCentral) from Central";
+            String centralID = "SELECT MAX(idCentral) from central";
             pss = conn.prepareStatement(centralID);
             ResultSet rs = pss.executeQuery();
             if (rs.next()) {

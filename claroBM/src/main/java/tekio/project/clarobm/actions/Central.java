@@ -19,8 +19,16 @@ public class Central extends CentralType {
     private String clli;    //descripcion 
     private int  cuid;      //central id for AD modal and data   
     private String cuname;  //central username for AD modal and data
-    private int cports;     //central ports //change for list
     private ArrayList<CentralPorts> cp = new ArrayList<>();
+    private ArrayList<CentralPorts> cp2 = new ArrayList<>();
+
+    public ArrayList<CentralPorts> getCp2() {
+        return cp2;
+    }
+
+    public void setCp2(ArrayList<CentralPorts> cp2) {
+        this.cp2 = cp2;
+    }
 
     public int getCuid() {
         return cuid;
@@ -83,14 +91,6 @@ public class Central extends CentralType {
         this.clli = clli;
     }
 
-    public int getCports() {
-        return cports;
-    }
-
-    public void setCports(int cports) {
-        this.cports = cports;
-    }
-
     public String getCuname() {
         return cuname;
     }
@@ -98,6 +98,4 @@ public class Central extends CentralType {
     public void setCuname(String cuname) {
         this.cuname = cuname;
     }
-    
-    
 }
