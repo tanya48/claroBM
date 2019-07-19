@@ -75,6 +75,7 @@
                                             </span>
                                         </display:column>
                                         <display:column property="cuname" title="Username" />
+                                        <display:column property="pname" title="Perfil" />
                                         <display:column property="clli" title="Central CLLI" />
                                         <display:column property="fullDescription" title="Central type" />
                                         <display:column title="Edit" >

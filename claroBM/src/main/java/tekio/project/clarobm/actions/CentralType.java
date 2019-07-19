@@ -9,14 +9,23 @@ package tekio.project.clarobm.actions;
  *
  * @author Tanya Tapia
  */
-public class CentralType {
+public class CentralType extends Profile {
     
     private int ctid;
     private String descripcion;
     private String tecnologia;
-    
     private String fullDescription;
 
+    @Override
+    public String getPname() {
+        return super.getPname(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setPname(String pname) {
+        super.setPname(pname); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public String getFullDescription() {
         return fullDescription;
     }

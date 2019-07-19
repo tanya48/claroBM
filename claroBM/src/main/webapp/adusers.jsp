@@ -75,6 +75,11 @@
                                         </display:column>
                                         <display:column property="uadname" title="Username" />
                                         <display:column property="clli" title="Central CLLI" />
+                                        <display:column title="Central Profiles">
+                                            <s:iterator value="#attr.row.cprof">
+                                                <s:property value="pname"/><br>
+                                            </s:iterator>
+                                        </display:column>
                                         <display:column property="fullDescription" title="Central type" />
                                         <display:column property="cuname" title="Central username" />
                                         <display:column title="Edit" >
@@ -110,40 +115,6 @@
                                                             <div class="modal-footer">
                                                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                                                 <input type="submit" class="btn btn-danger" value="Delete">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Edit AD User Modal -->
-                                            <div id="editADUser" class="modal fade">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <form>
-                                                            <div class="modal-header">						
-                                                                <h4 class="modal-title">Edit Active Directory User</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="form-row">
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Username</label>
-                                                                        <input type="text" class="form-control" required>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-row">
-                                                                    <div class="form-group col-md-12">
-                                                                        <label>Central</label>
-                                                                        <select id="inputStateCntral" class="form-control" required>
-                                                                            <option>Choose...</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>  
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                <input type="submit" class="btn btn-info" value="Save">
                                                             </div>
                                                         </form>
                                                     </div>
@@ -214,19 +185,6 @@
                                 <div class="form-group col-lg-12">
                                     <div id="response"></div>
                                 </div>
-                                <!--                                <div class="form-group col-lg-12">
-                                                                    <div class="alert alert-info" role="alert">
-                                                                        Username must be Domain/
-                                                                    </div>
-                                                                </div>-->
-                                <!--                                <div class="form-group col-md-6">
-                                                                    <label>Domain</label>
-                                                                    <input name="maddom" type="text" class="form-control" required>
-                                                                </div>
-                                                                <div class="form-group col-md-1">
-                                                                    <label style="color: #fff;" >__</label>
-                                                                    <h6>/</h6>
-                                                                </div>-->
                                 <div class="form-group col-md-12">
                                     <label>Username</label>
                                     <input id="madname" name="madname" type="text" class="form-control" required>
@@ -239,6 +197,15 @@
                                     <s:select id="lcwu" required="true" name="lcwu" headerKey="-1" headerValue="--Select--"
                                               list="listCentralwU" class="form-control"
                                               listKey="cuid" listValue="clli + ' ' + fullDescription + ' : ' + cuname"/>
+                                    <span id="em_lcwu" class="text-danger"></span>
+                                </div>
+                            </div>  
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Profiles</label>
+                                    <select id="lcwup" name="profiles">
+                                        <option value="">Select profile</option>
+                                    </select>
                                     <span id="em_lcwu" class="text-danger"></span>
                                 </div>
                             </div>  

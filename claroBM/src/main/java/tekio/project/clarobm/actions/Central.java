@@ -21,6 +21,15 @@ public class Central extends CentralType {
     private String cuname;  //central username for AD modal and data
     private ArrayList<CentralPorts> cp = new ArrayList<>();
     private ArrayList<CentralPorts> cp2 = new ArrayList<>();
+    private ArrayList<Profile> cprof = new ArrayList<>();
+
+    public ArrayList<Profile> getCprof() {
+        return cprof;
+    }
+
+    public void setCprof(ArrayList<Profile> cprof) {
+        this.cprof = cprof;
+    }
 
     public ArrayList<CentralPorts> getCp2() {
         return cp2;
@@ -50,7 +59,12 @@ public class Central extends CentralType {
     public void setFullDescription(String fullDescription) {
         super.setFullDescription(fullDescription); //To change body of generated methods, choose Tools | Templates.
     }
- 
+
+    @Override
+    public String getPname() {
+        return super.getPname(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public int getCid() {
         return cid;
     }

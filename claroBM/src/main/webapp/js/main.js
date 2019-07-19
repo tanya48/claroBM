@@ -5,6 +5,24 @@
  */
 
 $(document).ready(function () {
+
+    $("#lcwu").on('change', function () {
+        var centralId = $(this).val();
+        if (centralId)
+        {
+            $.ajax({
+                url: "fetchProfiles",
+                method: "POST",
+                data: {centralId: centralId},
+                dataType: "json",
+                success: function (lcwup) {
+                    $("#lcwup").html(lcwup);
+                }
+            });
+        } else {
+            $("#lcwup").html('<option value="">Select country first</option>');
+        }
+    });
     // Activate tooltip
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -38,7 +56,7 @@ $(document).ready(function () {
         $("#em_cports").html("");
         $("#em_lc").html("");
     });
-    
+
     $("#cancelCentralUser").click(function () {
         $("form").trigger("reset");
         $("#em_cuname").html("");
@@ -60,23 +78,23 @@ $(document).ready(function () {
     var mpport;
     var mcport;
     var nports;
-    
+
     mclli = $("#mclli").val();
     mcip = $("#mcip").val();
     mpip = $("#mpip").val();
     mpport = $("#mpport").val();
     mcport = $("#mcport").val();
-    
+
     //For central users
     var mcuname;
     var mcupass;
     var mcucpass;
-    
+
     mcuname = $("#mcuname").val();
     mcupass = $("#mcupass").val();
     mcucpass = $("#mcucpass").val();
-    
-    $("#mcuname").on('change keyup', function(){
+
+    $("#mcuname").on('change keyup', function () {
         mcuname = $("#mcuname").val();
         var regex = /^[a-zA-Z0-9]+$/; //change for claro Regex
         if (!mcuname.match(regex))
@@ -88,10 +106,10 @@ $(document).ready(function () {
             $("#em_cuname").html("");
         }
     });
-    $("#mcupass").on('change keyup', function(){
+    $("#mcupass").on('change keyup', function () {
         mcupass = $("#mcupass").val();
         //<input type="text" onkeyup="this.value = this.value.toUpperCase();"> for the uppercase
-        var regex = /^(?=.*[a-zA-Z0-9]).{4,8}$/; 
+        var regex = /^(?=.*[a-zA-Z0-9]).{4,8}$/;
         //var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,8}$/; //change for claro Regex
         if (!mcupass.match(regex))
         {
@@ -102,7 +120,7 @@ $(document).ready(function () {
             $("#em_cupass").html("");
         }
     });
-    $("#mcucpass").on('change keyup', function(){
+    $("#mcucpass").on('change keyup', function () {
         mcupass = $("#mcupass").val();
         mcucpass = $("#mcucpass").val();
         if (mcupass != mcucpass)
@@ -124,13 +142,13 @@ $(document).ready(function () {
             $("#em_lcwt").html("");
         }
     })
-    
+
     //For AD users
     var madname;
-    
+
     madname = $("#madname").val();
-    
-    $("#madname").on('change keyup', function(){
+
+    $("#madname").on('change keyup', function () {
         madname = $("#madname").val();
         //var regex = /^[a-zA-Z0-9]+$/; 
         var regex = /^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*(?:[\\][a-zA-Z0-9]+)*$/; //change for claro Regex
@@ -143,7 +161,7 @@ $(document).ready(function () {
             $("#em_adname").html("");
         }
     });
-    
+
     $("#lcwu").change(function () {
         if ($("#lcwu").val() == -1)
         {
@@ -152,7 +170,7 @@ $(document).ready(function () {
             $("#em_lcwu").html("");
         }
     });
-    
+
 
     $("#lc").change(function () {
         if ($("#lc").val() == -1)

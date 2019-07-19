@@ -77,6 +77,11 @@
                                         </display:column>
                                         <display:column property="clli" title="CLLI" />                                    
                                         <display:column property="fullDescription" title="Central type" />
+                                        <display:column title="Central Profiles">
+                                            <s:iterator value="#attr.row.cprof">
+                                                <s:property value="pname"/><br>
+                                            </s:iterator>
+                                        </display:column>
                                         <display:column property="cip" title="Central IP" />
                                         <display:column title="Central Ports">
                                             <s:iterator value="#attr.row.cp">

@@ -35,6 +35,30 @@ public class FetchRecords extends ActionSupport {
     private CentralUser centralUser;                                        //For central user Update
     private int uadid;                                                      //For ad user Update
     private AdUser adUser;                                                  //For ad user Update
+    private ArrayList<Profile> cprof = new ArrayList<>();
+    private ArrayList<Profile> lcwup = new ArrayList<>();
+
+    public ArrayList<Profile> getLcwup() {
+        return lcwup;
+    }
+
+    public void setLcwup(ArrayList<Profile> lcwup) {
+        this.lcwup = lcwup;
+    }
+    
+    private String centralId;
+
+    public String getCentralId() {
+        return centralId;
+    }
+
+    public void setCentralId(String centralId) {
+        this.centralId = centralId;
+    }
+    
+    public ArrayList<Profile> getCprof() {
+        return cprof;
+    }
 
    // Map<String,Object> session = ActionContext.getContext().getSession();
     public ArrayList<CentralPorts> getCp() {
@@ -98,7 +122,7 @@ public class FetchRecords extends ActionSupport {
             try {
                 // System.out.println(":"+session.get("username"));
                 Connection con = Conexion.getConexion();
-                String centrals = "select c.ipOriginal, c.ipProxy, c.puertoProxy, c.idCentral, c.descripcion as cd, tc.tecnologia, tc.descripcion as tcd, p.puertoOriginal from central c join tipocentral tc on (c.fk_idTipoCentral = tc.idTipoCentral) join puertos p on (c.idCentral = p.fk_idCentral) group by c.puertoProxy";
+                String centrals = "select c.ipOriginal, c.ipProxy, c.puertoProxy, c.idCentral, c.descripcion as cd, tc.idTipoCentral, tc.tecnologia, tc.descripcion as tcd, p.puertoOriginal, pp.nombrePerfil from central c join tipocentral tc on (c.fk_idTipoCentral = tc.idTipoCentral) join puertos p on (c.idCentral = p.fk_idCentral) join perfiles pp on (tc.idTipoCentral = pp.fk_idTipoCentral) group by c.puertoProxy";
                 PreparedStatement ps = con.prepareStatement(centrals);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -112,10 +136,24 @@ public class FetchRecords extends ActionSupport {
                         cpp.setCport(rss.getInt("puertoOriginal"));
                         cp.add(cpp);
                     }
+                    
+                    String profiles = "select nombrePerfil from perfiles where fk_idTipoCentral = ?";
+                    PreparedStatement pp = con.prepareStatement(profiles);
+                    pp.setInt(1, rs.getInt("idTipoCentral"));
+                    ResultSet rrs = pp.executeQuery();
+                    cprof = new ArrayList<>();
+                    while(rrs.next())
+                    {
+                        Profile p = new Profile();
+                        p.setPname(rrs.getString("nombrePerfil"));
+                        cprof.add(p);
+                    }
+  
                     Central central = new Central();
                     central.setCid(rs.getInt("idCentral"));
                     central.setCip(rs.getString("ipOriginal"));
                     central.setPip(rs.getString("ipProxy"));
+                    central.setCprof(cprof);
                     central.setPport(rs.getInt("puertoProxy"));
                     central.setClli(rs.getString("cd"));
                     central.setFullDescription(rs.getString("tecnologia").concat(" ").concat(rs.getString("tcd")));
@@ -196,8 +234,8 @@ public class FetchRecords extends ActionSupport {
         try {
             //Central users data table
             Connection con = Conexion.getConexion();
-            String centralUsers = "select uc.idusuariocentral, uc.username, c.descripcion as cd, tc.descripcion as tcd, tc.tecnologia from usuariocentral uc join central c on (uc.fk_idCentral = c.idCentral) "
-                    + "join tipocentral tc on (c.fk_idTipoCentral = tc.idTipoCentral)";
+            String centralUsers = "select pp.nombrePerfil, uc.idusuariocentral, uc.username, c.descripcion as cd, tc.descripcion as tcd, tc.tecnologia from usuariocentral uc join central c on (uc.fk_idCentral = c.idCentral) "
+                    + "join tipocentral tc on (c.fk_idTipoCentral = tc.idTipoCentral) join perfiles pp on (tc.idTipoCentral = pp.fk_idTipoCentral)";
             PreparedStatement ps = con.prepareStatement(centralUsers);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -205,6 +243,7 @@ public class FetchRecords extends ActionSupport {
                 cu.setCuid(rs.getInt("idusuariocentral"));
                 cu.setCuname(rs.getString("username"));
                 cu.setClli(rs.getString("cd"));
+                cu.setPname(rs.getString("nombrePerfil"));
                 cu.setFullDescription(rs.getString("tecnologia").concat(" ").concat(rs.getString("tcd")));
                 listCentralUsers.add(cu);
             }
@@ -332,6 +371,49 @@ public class FetchRecords extends ActionSupport {
                 central.setClli(rs.getString("cd"));
                 central.setFullDescription(rs.getString("tecnologia").concat(" ").concat(rs.getString("tcd")));
                 listCentralwU.add(central);
+            }
+            con.close();
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ERROR;
+        }
+    }
+    public String fetchProfiles() throws Exception {
+        try {
+            //Ad users data table
+            System.out.println("entre al fetch");
+            Connection con = Conexion.getConexion();
+            String fpcid = "select fk_idCentral from usuarioCentral where idUsuarioCentral = ?";    
+            PreparedStatement ps = con.prepareStatement(fpcid);
+            ps.setInt(1, Integer.parseInt(centralId));
+            ResultSet rs = ps.executeQuery();
+            int cpid = 0;
+            if(rs.next())
+            {
+                cpid = rs.getInt("fk_idCentral");
+            }
+            System.out.println(cpid);
+            String fpctid = "select fk_idTipoCentral from central where idCentral = ?";    
+            ps = con.prepareStatement(fpctid);
+            ps.setInt(1, cpid);
+            rs = ps.executeQuery();
+            int cptid = 0;
+            if(rs.next())
+            {
+                cptid = rs.getInt("fk_idTipoCentral");
+            }
+            System.out.println(cptid);
+            String fp = "select idPerfil, nombrePerfil from perfiles where fk_idTipoCentral = ?";    
+            ps = con.prepareStatement(fp);
+            ps.setInt(1, cptid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Profile perfil = new Profile();
+                perfil.setPid(rs.getInt("idPerfil"));
+                perfil.setPname(rs.getString("nombrePerfil"));
+                System.out.println(rs.getString("nombrePerfil"));
+                lcwup.add(perfil);
             }
             con.close();
             return SUCCESS;

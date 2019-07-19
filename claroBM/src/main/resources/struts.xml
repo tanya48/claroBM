@@ -149,6 +149,9 @@
             <result name="error">/error.jsp</result>
         </action>       
         <!--CHECK DATA-->
+        <action name="fetchProfiles" class="tekio.project.clarobm.actions.FetchRecords" method="fetchProfiles" >
+            <result name="success" type="json"></result>
+        </action>
         <action name="checkPort" class="tekio.project.clarobm.actions.checkData" method="execute" >
             <result name="success" type="json"></result>
         </action>
